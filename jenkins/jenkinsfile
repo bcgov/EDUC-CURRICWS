@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+
+  tools {nodejs "node"}
+
+  stages {    
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/bcgov/EDUC-CURRICWS.git'
+      }
+    }        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm i'
+      }
+    }     
+    stage('Test') {
+      steps {
+         sh './script/test'
+      }
+    }             
+  }
+}
