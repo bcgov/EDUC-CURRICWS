@@ -24,5 +24,9 @@
   "homepage": "https://github.com/bcgov/EDUC-CURRICWS#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2"
   }
 }
