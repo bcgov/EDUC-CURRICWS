@@ -60,7 +60,7 @@ pipeline {
             openshift.withProject(TOOLS_PROJECT){
               Backend: {
                 try{
-                    def bcBackend = openshift.process('-f', 'openshift/backend/curricws-backend.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
+                    def bcBackend = openshift.process('-f', 'openshift/jenkins/curricws-backend.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
 
                     openshift.apply(bcBackend).narrow('bc').startBuild('-w').logs('-f')
 
