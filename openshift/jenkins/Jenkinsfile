@@ -2,8 +2,35 @@
 
 pipeline {
   agent any
-  stages {    
-    stage('Initialize') {
+
+  environment {
+    DEBUG_OUTPUT = 'false'
+
+    DEV_PROJECT = 'hswww8-dev'
+    TEST_PROJECT = 'hswww8-test'
+    PROD_PROJECT = 'hswww8-prod'
+    TOOLS_PROJECT = 'hswww8-tools'
+
+    REPO_NAME = 'EDUC-CURRICWS'
+
+    JOB_NAME = 'demo'
+
+    SOURCE_REPO_RAW = 'https://github.com/bcgov/${REPO_NAME}/master'
+    SOURCE_REPO_REF = 'master'
+    SOURCE_REPO_URL = 'https://github.com/bcgov/${REPO_NAME}.git'
+
+    APP_NAME = 'curric-webservice'
+    APP_DOMAIN = 'pathfinder.gov.bc.ca'
+
+    //TOOLS_HOST_ROUTE = "${APP_NAME}-${TOOLS_PROJECT}.${APP_DOMAIN}"
+    //DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
+    //TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
+    //PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
+  }
+
+  stages {
+    stage('initialize') {
+     agent any
       steps {
           // Cancel any running builds in progress
           timeout(10) {
@@ -51,11 +78,6 @@ pipeline {
       steps {
         echo 'Testing'
       }
-    }  
-    stage('Deploy') {
-      steps {
-        echo 'Deploying'
-      }
-    }       
+    }
   }
 }
