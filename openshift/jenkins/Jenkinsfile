@@ -2,21 +2,82 @@
 
 pipeline {
   agent any
-  stages {    
+
+  environment {
+    DEBUG_OUTPUT = 'false'
+
+    DEV_PROJECT = 'hswww8-dev'
+    TEST_PROJECT = 'hswww8-test'
+    PROD_PROJECT = 'hswww8-prod'
+    TOOLS_PROJECT = 'hswww8-tools'
+
+    REPO_NAME = 'EDUC-CURRICWS'
+
+    JOB_NAME = 'demo'
+
+    SOURCE_REPO_RAW = 'https://github.com/bcgov/${REPO_NAME}/master'
+    SOURCE_REPO_REF = 'master'
+    SOURCE_REPO_URL = 'https://github.com/bcgov/${REPO_NAME}.git'
+
+    APP_NAME = 'curric-webservice'
+    APP_DOMAIN = 'pathfinder.gov.bc.ca'
+
+    //TOOLS_HOST_ROUTE = "${APP_NAME}-${TOOLS_PROJECT}.${APP_DOMAIN}"
+    //DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
+    //TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
+    //PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
+  }
+
+  stages {
     stage('initialize') {
+     agent any
       steps {
-        echo 'Initializing'
+          // Cancel any running builds in progress
+          timeout(10) {
+              echo "Cancelling previous ${APP_NAME}-${JOB_NAME} builds in progress..."
+              abortAllPreviousBuildInProgress(currentBuild)
+          }
+
+          script {
+              if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
+                  // Force OpenShift Plugin directives to be verbose
+                  openshift.logLevel(1)
+
+                  // Print all environment variables
+                  echo 'DEBUG - All pipeline environment variables:'
+                  echo sh(returnStdout: true, script: 'env')
+              }
+          }
       }
-    }        
+    }
     stage('Build') {
+      agent any
       steps {
-        echo 'Building'
+        script {
+          openshift.withCluster(){
+            openshift.withProject(TOOLS_PROJECT){
+              Backend: {
+                try{
+                    def bcBackend = openshift.process('-f', 'openshift/backend/curricws-backend.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
+
+                    openshift.apply(bcBackend).narrow('bc').startBuild('-w').logs('-f')
+
+                    openshift.tag("${REPO_NAME}-backend:latest", "${REPO_NAME}-backend:${JOB_NAME}")
+                }
+                catch(e) {
+                    echo "Backend build failed"
+                    throw e
+                }
+              }
+            }
+          }
+        }
       }
-    }              
+    }
     stage('Test') {
       steps {
         echo 'Testing'
       }
-    }       
+    }
   }
 }
