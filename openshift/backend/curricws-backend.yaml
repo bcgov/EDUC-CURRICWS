@@ -1,98 +1,98 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+---
+apiVersion: v1
+kind: Template
+labels:
+  template: "${REPO_NAME}-template"
 metadata:
-  annotations:
-    openshift.io/generated-by: OpenShiftWebConsole
-  creationTimestamp: '2019-07-05T19:23:21Z'
-  generation: 5
-  labels:
-    app: curric-webservice
-  name: curric-webservice
-  namespace: hswww8-dev
-  resourceVersion: '858886260'
-  selfLink: >-
-    /apis/apps.openshift.io/v1/namespaces/hswww8-dev/deploymentconfigs/curric-webservice
-  uid: 59efd2a8-9f5a-11e9-8dc7-0050568348cc
-spec:
-  replicas: 1
-  selector:
-    app: curric-webservice
-    deploymentconfig: curric-webservice
-  strategy:
-    activeDeadlineSeconds: 21600
-    resources: {}
-    rollingParams:
-      intervalSeconds: 1
-      maxSurge: 25%
-      maxUnavailable: 25%
-      timeoutSeconds: 600
-      updatePeriodSeconds: 1
-    type: Rolling
-  template:
-    metadata:
-      annotations:
-        openshift.io/generated-by: OpenShiftWebConsole
-      creationTimestamp: null
-      labels:
-        app: curric-webservice
-        deploymentconfig: curric-webservice
-    spec:
-      containers:
-        - image: >-
-            docker-registry.default.svc:5000/hswww8-tools/curriculum-webservice@sha256:65b2617ca4c5cddec9c849af81f779dea38bb13168e55c6013f04ba378386538
-          imagePullPolicy: Always
-          name: curric-webservice
-          ports:
-            - containerPort: 8080
-              protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-  test: false
-  triggers:
-    - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - curric-webservice
-        from:
-          kind: ImageStreamTag
-          name: 'curriculum-webservice:latest'
-          namespace: hswww8-tools
-        lastTriggeredImage: >-
-          docker-registry.default.svc:5000/hswww8-tools/curriculum-webservice@sha256:65b2617ca4c5cddec9c849af81f779dea38bb13168e55c6013f04ba378386538
-      type: ImageChange
-status:
-  availableReplicas: 1
-  conditions:
-    - lastTransitionTime: '2019-07-05T19:23:38Z'
-      lastUpdateTime: '2019-07-05T19:23:38Z'
-      message: Deployment config has minimum availability.
-      status: 'True'
-      type: Available
-    - lastTransitionTime: '2019-07-10T21:39:50Z'
-      lastUpdateTime: '2019-07-10T21:40:24Z'
-      message: replication controller "curric-webservice-4" successfully rolled out
-      reason: NewReplicationControllerAvailable
-      status: 'True'
-      type: Progressing
-  details:
-    causes:
-      - imageTrigger:
-          from:
-            kind: DockerImage
-            name: >-
-              docker-registry.default.svc:5000/hswww8-tools/curriculum-webservice@sha256:65b2617ca4c5cddec9c849af81f779dea38bb13168e55c6013f04ba378386538
-        type: ImageChange
-    message: image change
-  latestVersion: 4
-  observedGeneration: 5
-  readyReplicas: 1
-  replicas: 1
-  unavailableReplicas: 0
-  updatedReplicas: 1
+  name: "${REPO_NAME}-backend-bc"
+  creationTimestamp:
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp:
+    labels:
+      build: "${REPO_NAME}-backend"
+    name: nodejs-10
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: registry.access.redhat.com/rhoar-nodejs/nodejs-10:latest
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhoar-nodejs/nodejs-10:latest
+      generation:
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Local
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp:
+    labels:
+      build: "${REPO_NAME}-backend"
+    name: "${REPO_NAME}-backend"
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp:
+    labels:
+      build: "${REPO_NAME}-backend"
+    name: "${REPO_NAME}-backend-${JOB_NAME}"
+  spec:
+    completionDeadlineSeconds: 600
+    successfulBuildsHistoryLimit: 3
+    failedBuildsHistoryLimit: 3
+    nodeSelector:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${REPO_NAME}-backend:latest"
+    postCommit: {}
+    resources:
+      requests:
+        cpu: 1000m
+        memory: 1Gi
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+    runPolicy: SerialLatestOnly
+    source:
+      contextDir: backend
+      git:
+        ref: "${SOURCE_REPO_REF}"
+        uri: "${SOURCE_REPO_URL}"
+      type: Git
+    strategy:
+      dockerStrategy:
+        env:
+        - name: BUILD_LOGLEVEL
+          value: '2'
+        - name: NPM_CONFIG_LOGLEVEL
+          value: notice
+      type: Docker
+parameters:
+- name: REPO_NAME
+  description: Application repository name
+  required: true
+- name: JOB_NAME
+  description: Job identifier (i.e. 'pr-5' OR 'master')
+  required: true
+- name: SOURCE_REPO_REF
+  description: Git Pull Request Reference (i.e. 'pull/CHANGE_ID/head')
+  required: true
+- name: SOURCE_REPO_URL
+  description: Git Repository URL
+required: true
