@@ -5,7 +5,7 @@ import bcgov.GitHubHelper
 pipeline {
   agent any
   stages {    
-    stage('Initialize') {
+    stage('initialize') {
       steps {
         echo 'Initializing'
       }
