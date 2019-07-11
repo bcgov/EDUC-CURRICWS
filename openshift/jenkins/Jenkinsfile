@@ -5,14 +5,48 @@ pipeline {
   stages {    
     stage('Initialize') {
       steps {
-        echo 'Initializing'
+          // Cancel any running builds in progress
+          timeout(10) {
+              echo "Cancelling previous ${APP_NAME}-${JOB_NAME} builds in progress..."
+              abortAllPreviousBuildInProgress(currentBuild)
+          }
+
+          script {
+              if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
+                  // Force OpenShift Plugin directives to be verbose
+                  openshift.logLevel(1)
+
+                  // Print all environment variables
+                  echo 'DEBUG - All pipeline environment variables:'
+                  echo sh(returnStdout: true, script: 'env')
+              }
+          }
       }
-    }        
+    }
     stage('Build') {
+      agent any
       steps {
-        echo 'Building'
+        script {
+          openshift.withCluster(){
+            openshift.withProject(TOOLS_PROJECT){
+              Backend: {
+                try{
+                    def bcBackend = openshift.process('-f', 'openshift/backend/curricws-backend.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
+
+                    openshift.apply(bcBackend).narrow('bc').startBuild('-w').logs('-f')
+
+                    openshift.tag("${REPO_NAME}-backend:latest", "${REPO_NAME}-backend:${JOB_NAME}")
+                }
+                catch(e) {
+                    echo "Backend build failed"
+                    throw e
+                }
+              }
+            }
+          }
+        }
       }
-    }              
+    }
     stage('Test') {
       steps {
         echo 'Testing'
