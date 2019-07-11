@@ -1,20 +1,24 @@
 #!groovy
+
 pipeline {
   agent any
+  environment{
+    DEBUG_OUTPUT = 'false'
+  }
   stages {    
     stage('initialize') {
       steps {
-        echo 'Initializing'
+        echo "Initializing"
       }
     }        
     stage('Build') {
       steps {
-        echo 'Building'
+        echo "Building"
       }
     }              
     stage('Test') {
       steps {
-        echo 'Testing'
+        echo "Testing"
       }
     }       
   }
