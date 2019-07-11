@@ -1,7 +1,7 @@
 kind: "BuildConfig"
 apiVersion: "v1"
 metadata:
-  name: "EDUC-CURICWS-pipeline"
+  name: "educ-curricws-pipeline"
 spec:
   source:
     git:
