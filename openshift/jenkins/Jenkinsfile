@@ -1,6 +1,4 @@
 #!groovy
-@Library('devops-library')
-import bcgov.GitHubHelper
 
 pipeline {
   agent any
