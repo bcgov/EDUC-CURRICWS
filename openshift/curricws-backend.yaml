@@ -4,7 +4,7 @@ kind: Template
 labels:
   template: "${REPO_NAME}-template"
 metadata:
-  name: "${REPO_NAME}-backend-bc"
+  name: "${REPO_NAME}-backend"
   creationTimestamp:
 objects:
 - apiVersion: v1
