@@ -15,7 +15,7 @@ pipeline {
 
     REPO_NAME = 'educ-curricws'
 
-    JOB_NAME = 'demo'
+    JOB_NAME = 'latest'
 
     SOURCE_REPO_RAW = 'https://github.com/bcgov/${REPO_NAME}/master'
     SOURCE_REPO_REF = 'master'
@@ -83,10 +83,10 @@ pipeline {
                    // openshift.tag("${REPO_NAME}-frontend:latest", "${REPO_NAME}-frontend:${JOB_NAME}")
 
                     //define buildconfig for server
-                    def bcFrontendStatic = openshift.process('-f', 'openshift/curricws-frontend-static.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "NAMESPACE=${TOOLS_PROJECT}")
+                    //def bcFrontendStatic = openshift.process('-f', 'openshift/curricws-frontend-static.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "NAMESPACE=${TOOLS_PROJECT}")
 
                     //build from template and tag
-                    openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
+                    //openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
                    // openshift.tag("${REPO_NAME}-frontend-static:latest", "${REPO_NAME}-frontend-static:${JOB_NAME}")
 
                     //notifyStageStatus("Frontend", "SUCCESS")
