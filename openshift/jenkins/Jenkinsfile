@@ -62,9 +62,9 @@ pipeline {
                 try{
                     def bcBackend = openshift.process('-f', 'openshift/curricws-backend.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
 
-                    openshift.apply(bcBackend).narrow('bc').startBuild('-w').logs('-f')
+                    //openshift.apply(bcBackend).narrow('bc').startBuild('-w').logs('-f')
 
-                    openshift.tag("${REPO_NAME}-backend:latest", "${REPO_NAME}-backend:${JOB_NAME}")
+                    //openshift.tag("${REPO_NAME}-backend:latest", "${REPO_NAME}-backend:${JOB_NAME}")
                 }
                 catch(e) {
                     echo "Backend build failed"
