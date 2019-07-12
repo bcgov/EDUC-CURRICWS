@@ -13,7 +13,7 @@ pipeline {
     PROD_PROJECT = 'hswww8-prod'
     TOOLS_PROJECT = 'hswww8-tools'
 
-    REPO_NAME = 'educ-currucws'
+    REPO_NAME = 'educ-curricws'
 
     JOB_NAME = 'demo'
 
