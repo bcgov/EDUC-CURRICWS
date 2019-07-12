@@ -94,7 +94,6 @@ pipeline {
                 catch(e){
                     echo "Frontend build failed"
                     //notifyStageStatus('Frontend', 'FAILURE')
-                    echo e;
                     throw e
                     
                 }
