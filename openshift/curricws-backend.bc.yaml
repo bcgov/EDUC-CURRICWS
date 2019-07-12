@@ -76,7 +76,7 @@ objects:
         uri: "${SOURCE_REPO_URL}"
       type: Git
     strategy:
-      dockerStrategy:
+      dockerStrategy:`
         env:
         - name: BUILD_LOGLEVEL
           value: '2'
