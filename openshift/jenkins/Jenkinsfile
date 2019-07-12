@@ -15,7 +15,7 @@ pipeline {
 
     REPO_NAME = 'educ-curricws'
 
-    JOB_NAME = 'demo'
+    JOB_NAME = 'latest'
 
     SOURCE_REPO_RAW = 'https://github.com/bcgov/${REPO_NAME}/master'
     SOURCE_REPO_REF = 'master'
