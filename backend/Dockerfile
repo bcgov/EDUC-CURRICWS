@@ -10,4 +10,4 @@ RUN npm ci
 
 # Build Application
 COPY . /opt/app-root/src
-RUN npm run build
+RUN npm start
