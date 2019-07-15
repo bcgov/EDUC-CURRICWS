@@ -166,11 +166,12 @@ pipeline {
 }
 
 def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
+  echo "Deplying Image Stage"
   if (!stageEnv.equalsIgnoreCase('Dev')) {
     input("Deploy to ${projectEnv}?")
   }
 
-  notifyStageStatus("Deploy - ${stageEnv}", 'PENDING')
+  //notifyStageStatus("Deploy - ${stageEnv}", 'PENDING')
 
   openshift.withCluster() {
     openshift.withProject(projectEnv) {
