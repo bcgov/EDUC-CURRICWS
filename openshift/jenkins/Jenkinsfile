@@ -181,7 +181,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
 
   openshift.withCluster() {
     openshift.withProject(projectEnv) {
-      if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
+      if (DEBUG_OUTPUT.equalsIgnoreCase('true')) {
         echo "DEBUG - Using project: ${openshift.project()}"
       }
       //echo "Tagging Image ${REPO_NAME}-backend:${JOB_NAME}..."
@@ -189,17 +189,17 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
 
       echo "Tagging Image ${REPO_NAME}-frontend:${JOB_NAME}..."
       openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend:${JOB_NAME}", "${REPO_NAME}-frontend:${JOB_NAME}")
-/*
-      echo "Processing DeploymentConfig ${REPO_NAME}-backend..."
-      def dcBackendTemplate = openshift.process('-f',
-        'openshift/curricws-backend.dc.yaml',
-        "REPO_NAME=${REPO_NAME}",
-        "JOB_NAME=${JOB_NAME}",
-        "NAMESPACE=${projectEnv}",
-        "APP_NAME=${APP_NAME}",
-        "HOST_ROUTE=${hostRouteEnv}"
-      )
-*/
+      /*
+            echo "Processing DeploymentConfig ${REPO_NAME}-backend..."
+            def dcBackendTemplate = openshift.process('-f',
+              'openshift/curricws-backend.dc.yaml',
+              "REPO_NAME=${REPO_NAME}",
+              "JOB_NAME=${JOB_NAME}",
+              "NAMESPACE=${projectEnv}",
+              "APP_NAME=${APP_NAME}",
+              "HOST_ROUTE=${hostRouteEnv}"
+            )
+      */
       echo "Processing DeploymentConfig ${REPO_NAME}-frontend..."
       def dcFrontendStaticTemplate = openshift.process('-f',
         'openshift/curricws-frontend-static.dc.yaml',
@@ -220,12 +220,12 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
       // Wait for deployments to roll out
       timeout(10) {
         parallel(
-            Backend: {
-                dcBackend.rollout().status('--watch=true')
-            },
-            Frontend: {
-                dcFrontendStatic.rollout().status('--watch=true')
-            }
+          Backend: {
+            dcBackend.rollout().status('--watch=true')
+          },
+          Frontend: {
+            dcFrontendStatic.rollout().status('--watch=true')
+          }
         )
       }
     }
@@ -234,7 +234,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
 
 def notifyStageStatus(String name, String status) {
   def sha1 = GIT_COMMIT
-  if(JOB_BASE_NAME.startsWith('PR-')) {
+  if (JOB_BASE_NAME.startsWith('PR-')) {
     sha1 = GitHubHelper.getPullRequestLastCommitId(this)
   }
 
