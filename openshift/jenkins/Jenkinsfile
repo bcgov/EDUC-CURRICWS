@@ -53,7 +53,7 @@ pipeline {
         }
       }
     }
-    /*
+    
     stage('Build') {
       agent any
       steps {
@@ -123,7 +123,7 @@ pipeline {
         }
       }
     }
-    */
+    
     stage('Test') {
       steps {
         echo 'Testing'
@@ -219,14 +219,9 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
 
       // Wait for deployments to roll out
       timeout(10) {
-        parallel(
-          Backend: {
-            dcBackend.rollout().status('--watch=true')
-          },
           Frontend: {
             dcFrontendStatic.rollout().status('--watch=true')
-          }
-        )
+          }        
       }
     }
   }
