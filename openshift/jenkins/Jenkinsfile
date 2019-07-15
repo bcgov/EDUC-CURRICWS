@@ -181,8 +181,8 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
       //echo "Tagging Image ${REPO_NAME}-backend:${JOB_NAME}..."
       //openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-backend:${JOB_NAME}", "${REPO_NAME}-backend:${JOB_NAME}")
 
-      echo "Tagging Image ${REPO_NAME}-frontend-static:${JOB_NAME}..."
-      openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend-static:${JOB_NAME}", "${REPO_NAME}-frontend-static:${JOB_NAME}")
+      echo "Tagging Image ${REPO_NAME}-frontend:${JOB_NAME}..."
+      openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend:${JOB_NAME}", "${REPO_NAME}-frontend:${JOB_NAME}")
 /*
       echo "Processing DeploymentConfig ${REPO_NAME}-backend..."
       def dcBackendTemplate = openshift.process('-f',
@@ -194,7 +194,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
         "HOST_ROUTE=${hostRouteEnv}"
       )
 */
-      echo "Processing DeploymentConfig ${REPO_NAME}-frontend-static..."
+      echo "Processing DeploymentConfig ${REPO_NAME}-frontend..."
       def dcFrontendStaticTemplate = openshift.process('-f',
         'openshift/curricws-frontend-static.dc.yaml',
         "REPO_NAME=${REPO_NAME}",
@@ -208,7 +208,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
       echo "Applying Deployment ${REPO_NAME}-backend..."
       def dcBackend = openshift.apply(dcBackendTemplate).narrow('dc')
 
-      echo "Applying Deployment ${REPO_NAME}-frontend-static..."
+      echo "Applying Deployment ${REPO_NAME}-frontend..."
       def dcFrontendStatic = openshift.apply(dcFrontendStaticTemplate).narrow('dc')
 
       // Wait for deployments to roll out
