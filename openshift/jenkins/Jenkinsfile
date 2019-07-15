@@ -185,7 +185,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
 
       echo "Processing DeploymentConfig ${REPO_NAME}-backend..."
       def dcBackendTemplate = openshift.process('-f',
-        'openshift/obiee-backend.dc.yaml',
+        'openshift/curricws-backend.dc.yaml',
         "REPO_NAME=${REPO_NAME}",
         "JOB_NAME=${JOB_NAME}",
         "NAMESPACE=${projectEnv}",
@@ -195,7 +195,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
 
       echo "Processing DeploymentConfig ${REPO_NAME}-frontend-static..."
       def dcFrontendStaticTemplate = openshift.process('-f',
-        'openshift/obiee-frontend-static.dc.yaml',
+        'openshift/curricws-frontend-static.dc.yaml',
         "REPO_NAME=${REPO_NAME}",
         "JOB_NAME=${JOB_NAME}",
         "NAMESPACE=${projectEnv}",
