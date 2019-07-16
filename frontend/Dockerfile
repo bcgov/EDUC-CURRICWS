@@ -11,4 +11,5 @@ RUN npm ci
 # Build Application
 COPY . /opt/app-root/src
 RUN npm -v
+EXPOSE 8080 2015 1521 443
 CMD ["npm", "start"]
