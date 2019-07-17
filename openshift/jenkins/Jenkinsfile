@@ -129,6 +129,8 @@ pipeline {
         echo 'Testing'
       }
     }
+    //Dev -tool
+    /*
     stage('Deploy - Dev') {
       agent any
       
@@ -149,7 +151,8 @@ pipeline {
           notifyStageStatus('Deploy - tools', 'FAILURE')
         }
       }
-      /*
+      */
+      //Dev -Dev
       steps {
         script {
           deployStage('Dev', DEV_PROJECT, DEV_HOST_ROUTE)
@@ -166,7 +169,7 @@ pipeline {
           createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
           notifyStageStatus('Deploy - Dev', 'FAILURE')
         }
-      }*/
+      }
       
     }
   }
