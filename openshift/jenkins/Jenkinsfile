@@ -129,11 +129,10 @@ pipeline {
         echo 'Testing'
       }
     }
-    //Dev -tool
-    /*
-    stage('Deploy - Dev') {
+    
+    stage('Deploy') {
       agent any
-      
+      /*
       steps {
         script {
           deployStage('Tools', TOOLS_PROJECT, TOOLS_HOST_ROUTE)
@@ -142,13 +141,13 @@ pipeline {
       post {
         success {
           echo 'Deployment to Tools was successful'
-          createDeploymentStatus(TOOLS_PROJECT, 'SUCCESS', TOOLS_HOST_ROUTE)
-          notifyStageStatus('Deploy - Tools', 'SUCCESS')
+          //createDeploymentStatus(TOOLS_PROJECT, 'SUCCESS', TOOLS_HOST_ROUTE)
+          //notifyStageStatus('Deploy - Tools', 'SUCCESS')
         }
         failure {
           echo 'Deployment to Dev failed'
-          createDeploymentStatus(TOOLS_PROJECT, 'FAILURE', TOOLS_HOST_ROUTE)
-          notifyStageStatus('Deploy - tools', 'FAILURE')
+          //createDeploymentStatus(TOOLS_PROJECT, 'FAILURE', TOOLS_HOST_ROUTE)
+          //notifyStageStatus('Deploy - tools', 'FAILURE')
         }
       }
       */
