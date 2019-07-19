@@ -152,7 +152,6 @@ pipeline {
       }
       */
       //Dev -Dev
-      /*
       steps {
         script {
           deployStage('Dev', DEV_PROJECT, DEV_HOST_ROUTE)
@@ -170,8 +169,9 @@ pipeline {
           notifyStageStatus('Deploy - Dev', 'FAILURE')
         }
       }
-*/
-      //Deploy to Test
+
+      //test
+      /*
        steps {
         script {
           deployStage('Test', TEST_PROJECT, TEST_HOST_ROUTE)
@@ -189,6 +189,7 @@ pipeline {
           notifyStageStatus('Deploy - Test', 'FAILURE')
         }
       }
+      */
       
     }
   }
