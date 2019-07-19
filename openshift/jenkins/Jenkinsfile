@@ -152,6 +152,7 @@ pipeline {
       }
       */
       //Dev -Dev
+      /*
       steps {
         script {
           deployStage('Dev', DEV_PROJECT, DEV_HOST_ROUTE)
@@ -167,6 +168,25 @@ pipeline {
           echo 'Deployment to Dev failed'
           createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
           notifyStageStatus('Deploy - Dev', 'FAILURE')
+        }
+      }
+*/
+      //Deploy to Test
+       steps {
+        script {
+          deployStage('Test', TEST_PROJECT, TEST_HOST_ROUTE)
+        }
+      }
+      post {
+        success {
+          echo 'Deployment to Test was successful'
+          createDeploymentStatus(TEST_PROJECT, 'SUCCESS', TEST_HOST_ROUTE)
+          notifyStageStatus('Deploy - Test', 'SUCCESS')
+        }
+        failure {
+          echo 'Deployment to Dev failed'
+          createDeploymentStatus(TEST, 'FAILURE', TEST_HOST_ROUTE)
+          notifyStageStatus('Deploy - Test', 'FAILURE')
         }
       }
       
