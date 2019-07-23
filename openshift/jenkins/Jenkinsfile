@@ -26,7 +26,9 @@ pipeline {
     APP_DOMAIN = 'pathfinder.gov.bc.ca'
 
     TOOLS_HOST_ROUTE = "${APP_NAME}-${TOOLS_PROJECT}.${APP_DOMAIN}"
+    //curric-webservice-hswww8-dev.pathfinder.gov.bc.ca
     DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
+
     //TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
     //PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
   }
@@ -154,18 +156,19 @@ pipeline {
       //Dev -Dev
       steps {
         script {
+          //input:  Dev, hswww8-dev, curric-webservice-hswww8-dev.pathfinder.gov.bc.ca
           deployStage('Dev', DEV_PROJECT, DEV_HOST_ROUTE)
         }
       }
       post {
         success {
           echo 'Deployment to Dev was successful'
-          createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
+          //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
           notifyStageStatus('Deploy - Dev', 'SUCCESS')
         }
         failure {
           echo 'Deployment to Dev failed'
-          createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
+          //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
           notifyStageStatus('Deploy - Dev', 'FAILURE')
         }
       }
@@ -212,7 +215,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
       //openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-backend:${JOB_NAME}", "${REPO_NAME}-backend:${JOB_NAME}")
 
       echo "Tagging Image ${REPO_NAME}-frontend:${JOB_NAME}..."
-      openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend:${JOB_NAME}", "${REPO_NAME}-frontend:${JOB_NAME}")
+      //openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend:${JOB_NAME}", "${REPO_NAME}-frontend:${JOB_NAME}")
       /*
             echo "Processing DeploymentConfig ${REPO_NAME}-backend..."
             def dcBackendTemplate = openshift.process('-f',
