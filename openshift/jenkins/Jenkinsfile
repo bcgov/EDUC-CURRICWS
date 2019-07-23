@@ -28,8 +28,7 @@ pipeline {
     TOOLS_HOST_ROUTE = "${APP_NAME}-${TOOLS_PROJECT}.${APP_DOMAIN}"
     //curric-webservice
     DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
-
-    //TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
+    TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
     //PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
   }
 
@@ -132,26 +131,7 @@ pipeline {
       }
     }
     
-    stage('Deploy') {
-      agent any
-      
-      steps {
-        script {
-          deployStage('Tools', TOOLS_PROJECT, TOOLS_HOST_ROUTE)
-        }
-      }
-      post {
-        success {
-          echo 'Deployment to Tools was successful'
-          //createDeploymentStatus(TOOLS_PROJECT, 'SUCCESS', TOOLS_HOST_ROUTE)
-          //notifyStageStatus('Deploy - Tools', 'SUCCESS')
-        }
-        failure {
-          echo 'Deployment to Dev failed'
-          //createDeploymentStatus(TOOLS_PROJECT, 'FAILURE', TOOLS_HOST_ROUTE)
-          //notifyStageStatus('Deploy - tools', 'FAILURE')
-        }
-      }
+    stage('Deploy DEV') {
       
       //Dev -Dev
       steps {
@@ -195,6 +175,50 @@ pipeline {
       */
       
     }
+    stage('Deploy test') {
+      
+      //DEPLOY TEST
+      steps {
+        script {
+          
+          deployStage('Test', TEST_PROJECT, TEST_HOST_ROUTE)
+        }
+      }
+      post {
+        success {
+          echo 'Deployment to TEST was successful'
+          //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
+          //notifyStageStatus('Deploy - Dev', 'SUCCESS')
+        }
+        failure {
+          echo 'Deployment to TEST failed'
+          //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
+          //notifyStageStatus('Deploy - Dev', 'FAILURE')
+        }
+      }
+
+      //test
+      /*
+       steps {
+        script {
+          deployStage('Test', TEST_PROJECT, TEST_HOST_ROUTE)
+        }
+      }
+      post {
+        success {
+          echo 'Deployment to Test was successful'
+          createDeploymentStatus(TEST_PROJECT, 'SUCCESS', TEST_HOST_ROUTE)
+          notifyStageStatus('Deploy - Test', 'SUCCESS')
+        }
+        failure {
+          echo 'Deployment to Dev failed'
+          createDeploymentStatus(TEST, 'FAILURE', TEST_HOST_ROUTE)
+          notifyStageStatus('Deploy - Test', 'FAILURE')
+        }
+      }
+      */
+      
+    }    
   }
 }
 
