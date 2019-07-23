@@ -134,7 +134,7 @@ pipeline {
     
     stage('Deploy') {
       agent any
-      /*
+      
       steps {
         script {
           deployStage('Tools', TOOLS_PROJECT, TOOLS_HOST_ROUTE)
@@ -152,7 +152,7 @@ pipeline {
           //notifyStageStatus('Deploy - tools', 'FAILURE')
         }
       }
-      */
+      
       //Dev -Dev
       steps {
         script {
