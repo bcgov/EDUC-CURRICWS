@@ -215,7 +215,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
       //openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-backend:${JOB_NAME}", "${REPO_NAME}-backend:${JOB_NAME}")
 
       echo "Tagging Image ${REPO_NAME}-frontend:${JOB_NAME}..."
-      //openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend:${JOB_NAME}", "${REPO_NAME}-frontend:${JOB_NAME}")
+      openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend:${JOB_NAME}", "${REPO_NAME}-frontend:${JOB_NAME}")
       /*
             echo "Processing DeploymentConfig ${REPO_NAME}-backend..."
             def dcBackendTemplate = openshift.process('-f',
