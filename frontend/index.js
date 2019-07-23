@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
    res.send('hello TEST and DEV');
 });
 //listen to port 8080 by default
-app.listen(process.env.PORT || 2015);
+app.listen(process.env.PORT || 8080);
    
 module.exports = app;
 
