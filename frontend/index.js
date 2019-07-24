@@ -6,7 +6,7 @@ var app = express();
 
 //Respond with "hello world" for requests that hit our root "/"
 app.get('/', function (req, res) {
-   res.send('hello TEST and DEV');
+   res.send('Great!');
 });
 //listen to port 8080 by default
 app.listen(process.env.PORT || 8080);
