@@ -1,6 +1,5 @@
 # Don't track content of these folders
-backend/node_modules/
-frontend/node_modules/
+node_modules/
 
 
 # Compiled source #
