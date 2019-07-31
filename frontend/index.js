@@ -1,27 +1,42 @@
-var http = require("http");
-//importing node framework
-var express = require('express');
- 
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+var swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./swagger.json');
+// create express app
+const app = express();
 
-//Respond with "hello world" for requests that hit our root "/"
-app.get('/', function (req, res) {
-   res.send('Great!');
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+// Configuring the database
+const dbConfig = require('./config/database.config.js');
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+// Connecting to the database
+mongoose.connect(dbConfig.url, {
+    useNewUrlParser: true
+}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
 });
-//listen to port 8080 by default
-app.listen(process.env.PORT || 8080);
-   
-module.exports = app;
 
-//http.createServer(function (request, response) {
-   // Send the HTTP header 
-   // HTTP Status: 200 : OK
-   // Content Type: text/plain
-//   response.writeHead(200, {'Content-Type': 'text/plain'});
-   
-   // Send the response body as "Hello World"
-//   response.end('Hello World 2\n');
-//}).listen(8080);
+// define a simple route
+app.get('/', (req, res) => {
+    res.json({"message": "Welcome to the B.C Curriculum web api"});
+});
+app.use('/api-documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// Console will print the message
-console.log('Server running');
+//app.use('/api/v1', router);
+require('./app/routes/routes.js')(app);
+
+// listen for requests
+app.listen(8080, () => {
+    console.log("Server is listening on port 8080");
+});
