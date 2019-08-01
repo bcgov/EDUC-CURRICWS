@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://curricws:w3bt3am!@mongodb-hswww8-dev.pathfinder.gov.bc.ca:27017/curriculum'
+    url: 'mongodb://admin:curricw3bt3am@mongodb-hswww8-dev.pathfinder.gov.bc.ca/curriculum'
 };
