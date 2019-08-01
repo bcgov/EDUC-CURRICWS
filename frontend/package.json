@@ -14,7 +14,12 @@
     "curriculum",
     "bc",
     "web",
-    "service"
+    "service",
+    "Express",
+    "RestAPI",
+    "MongoDB",
+    "Mongoose",
+    "Curriculum"
   ],
   "author": "Ministry of Education",
   "license": "ISC",
@@ -23,7 +28,10 @@
   },
   "homepage": "https://github.com/bcgov/EDUC-CURRICWS#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.6",
+    "swagger-ui-express": "^4.0.7"
   },
   "devDependencies": {
     "mocha": "^6.1.4",

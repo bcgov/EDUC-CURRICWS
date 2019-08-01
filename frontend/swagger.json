@@ -1,0 +1,57 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Curriculum Nodes Web API",
+        "description": "A simple API to get Nodes"
+    },
+    "schemes": [
+        "http"
+    ],
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/all": {
+            "get": {
+                "summary": "Gets curriculum nodes",
+                "description": "Returns a list containing all nodes.",
+                "responses": {
+                    "200": {
+                        "description": "A list of Nodes",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "properties": {
+                                    "_id": {
+                                        "type": "string"
+                                    },
+                                    "field_course_name_1": {
+                                        "type": "string"
+                                    },
+                                    "field_path_reference": {
+                                        "type": "string"
+                                    },
+                                    "field_grade": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "Curriculum": {
+                                        "type": "string"
+                                    },
+                                    "Content":{
+                                        "type": "[{}]"
+                                    },
+                                    "Elaborations":{
+                                        "type": "[{}]"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
