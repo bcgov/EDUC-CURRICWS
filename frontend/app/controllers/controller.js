@@ -5,12 +5,12 @@ exports.create = (req, res) => {
     // Validate request
     if(!req.body.content) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            message: "Node content can not be empty"
         });
     }
 
     // Create a Note
-    const note = new Note({
+    const node = new Node({
         field_course_name_1: String,
         field_path_reference:String,
         field_grade: String,
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     });
 
     // Save Note in the database
-    note.save()
+    node.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
