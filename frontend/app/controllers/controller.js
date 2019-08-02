@@ -11,8 +11,8 @@ exports.create = (req, res) => {
 
     // Create a node
     const node = new Node({
-        field_course_name_1: String,
-        field_path_reference:String,
+        field_course_name_1: req.body.field_course_name_1,
+        field_path_reference:req.body.field_path_reference,
         field_grade: String,
         type: String,
         Curriculum: String,
