@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost:27017/curriculum'
+    url: 'mongodb://curriculum-hswww8-dev.pathfinder.gov.bc.ca:27017/curriculum'
 };
