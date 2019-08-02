@@ -12,12 +12,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Configuring the database
-const dbConfig = require('./config/database.config');
-const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
+//const dbConfig = require('./config/database.config');
+//const mongoose = require('mongoose');
+
+//mongoose.Promise = global.Promise;
 
 // Connecting to the database
+/*
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
@@ -26,7 +28,7 @@ mongoose.connect(dbConfig.url, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
-
+*/
 // define a simple route
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to the B.C Curriculum web api"});
