@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
-/* Connect to Mongo V1
+//Connect to Mongo V1
 // Configuring the database
 
 const dbConfig = require('./config/database.config');
@@ -28,7 +28,8 @@ mongoose.connect(dbConfig.url, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
-*/
+
+/*
 //Connect to Mongo V2
 var mongoose = require('mongoose');
 
@@ -56,6 +57,7 @@ mongoose.connection.once('open', (data) => {
     console.log('Connection has been made');
     console.log(data);
 });
+*/
 
 // define a simple route
 app.get('/', (req, res) => {

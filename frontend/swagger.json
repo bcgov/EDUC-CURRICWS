@@ -8,7 +8,7 @@
     "schemes": [
         "http"
     ],
-    "host": "localhost:3000",
+    "host": "172.50.188.50:8080",
     "basePath": "/",
     "paths": {
         "/all": {
