@@ -36,7 +36,7 @@ var mongoose = require('mongoose');
 var username = process.env.MONGO_DB_USERNAME || 'curricws';
 var password = process.env.MONGO_DB_PASSWORD || 'w3bt3am!';
 
-var host = process.env.MONGODB_SERVICE_HOST || '127.0.0.1';
+var host = process.env.MONGODB_SERVICE_HOST || '172.50.188.50';
 var port = process.env.MONGODB_SERVICE_PORT || '27017';
 
 var database = process.env.MONGO_DB_DATABASE || 'curriculum';
