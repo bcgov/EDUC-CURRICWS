@@ -7,7 +7,7 @@ function returnSecret(input) {
     fs.readFile(input, (err, data) => {
         if (err) throw err;
         console.log(data);
-        return data.toString();
+        return data;
     });
 }
 var pathToSecret = '/var/lib/mongodb/data/';
