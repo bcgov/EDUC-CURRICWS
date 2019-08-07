@@ -19,6 +19,10 @@ var port = '27017';//process.env.MONGODB_SERVICE_PORT || '27017';
 var database = returnSecret(pathToSecret + 'database_name');
 */
 var username;
+var password;
+var host;
+var port;
+var database;
 fs.readFile('/var/lib/mongodb/data/username', (err, data) => {
     if (err) throw err;
     username = data;
