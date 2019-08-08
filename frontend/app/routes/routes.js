@@ -6,4 +6,6 @@ module.exports = (app) => {
      app.get('/subjects', curri.findSubjects);
      //Create a Curriculum object
      app.post('/nodes',curri.create);
+     //Delete a Curriculum object
+     app.delete('/nodes/:nodeId', curri.delete);
 };

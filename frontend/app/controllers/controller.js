@@ -49,3 +49,25 @@ exports.findSubjects = (req, res) => {
 
 
 };
+
+// Delete a note with the specified noteId in the request
+exports.delete = (req, res) => {
+    Note.findByIdAndRemove(req.params.nodeId)
+    .then(node => {
+        if(!node) {
+            return res.status(404).send({
+                message: "Node not found with id " + req.params.nodeId
+            });
+        }
+        res.send({message: "Node deleted successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Node not found with id " + req.params.nodeId
+            });                
+        }
+        return res.status(500).send({
+            message: "Node not delete note with id " + req.params.nodeId
+        });
+    });
+};
