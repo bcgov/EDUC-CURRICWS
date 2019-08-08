@@ -52,7 +52,7 @@ exports.findSubjects = (req, res) => {
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Note.findByIdAndRemove(req.params.nodeId)
+    Node.findByIdAndRemove(req.params.nodeId)
     .then(node => {
         if(!node) {
             return res.status(404).send({
