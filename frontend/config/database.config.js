@@ -12,8 +12,8 @@ function returnSecret(input) {
 }
 
 
-var username = fs.readFile('/opt/etc/secrets/username', 'utf8').trim();//process.env.MONGO_DB_USERNAME || 'curricws';
-var password = fs.readFile('/opt/etc/secrets/password', 'utf8').trim();//process.env.MONGO_DB_PASSWORD || 'w3bt3am!';
+var username = fs.readFileSync('/opt/etc/secrets/username', 'utf8').trim();//process.env.MONGO_DB_USERNAME || 'curricws';
+var password = fs.readFileSync('/opt/etc/secrets/password', 'utf8').trim();//process.env.MONGO_DB_PASSWORD || 'w3bt3am!';
 var host = '172.50.188.50';//process.env.MONGODB_SERVICE_HOST || '172.50.188.50';
 var port = '27017';//process.env.MONGODB_SERVICE_PORT || '27017';
 var database = returnSecret(pathToSecret + 'database_name');
