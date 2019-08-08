@@ -1,7 +1,7 @@
 var fs = require('fs');
 // Connect to Mongodb
 
-var pathToSecret = '/var/lib/mongodb/data/';
+var pathToSecret = '/opt/etc/secrets/';
 
 function returnSecret(input) {
     fs.readFileSync(input, (err, data) => {
