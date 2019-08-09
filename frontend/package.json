@@ -2,7 +2,7 @@
   "name": "curriculum-webservice",
   "version": "1.0.0",
   "description": "Webservice for Curriculum\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[B\u001b[ Se\u001b[2~rvice for Curriculum",
-  "main": "loader.js",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "load": "node loader.js"
