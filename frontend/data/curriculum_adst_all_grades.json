@@ -1,337 +1,256 @@
 [{
-   "node": {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Kindergarten",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies K",
-      "Content": [
-         {
-            "id": "adst-core-K-big_idea-123891",
-            "main content": "Designs grow out of natural curiosity.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-K-big_idea-123891",
+         "main content": "Designs grow out of natural curiosity.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Kindergarten",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies K",
-      "Content": [
-         {
-            "id": "adst-core-K-big_idea-123892",
-            "main content": "Skills can be developed through play.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-K-big_idea-123892",
+         "main content": "Skills can be developed through play.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Kindergarten",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies K",
-      "Content": [
-         {
-            "id": "adst-core-K-big_idea-123893",
-            "main content": "Technologies are tools that extend human capabilities.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
-      "field_course_name_1": "core",
-      "field_path_reference": "adst",
-      "field_grade": "Grade 1",
-      "type": "Big Ideas",
-      "Curriculum": "Applied Design, Skills, and Technologies 1",
-      "Content": [
-         {
+      "Content": [{
+         "id": "adst-core-K-big_idea-123893",
+         "main content": "Technologies are tools that extend human capabilities.",
+         "sub-content": []
+      }]
+   },
+   {
+      "node": {
+         "field_course_name_1": "core",
+         "field_path_reference": "adst",
+         "field_grade": "Grade 1",
+         "type": "Big Ideas",
+         "Curriculum": "Applied Design, Skills, and Technologies 1",
+         "Content": [{
             "id": "adst-core-1-big_idea-61521",
             "main content": "Designs grow out of natural curiosity.",
             "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+         }]
+      }
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 1",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 1",
-      "Content": [
-         {
-            "id": "adst-core-1-big_idea-61522",
-            "main content": "Skills can be developed through play.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-1-big_idea-61522",
+         "main content": "Skills can be developed through play.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 1",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 1",
-      "Content": [
-         {
-            "id": "adst-core-1-big_idea-61523",
-            "main content": "Technologies are tools that extend human capabilities.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-1-big_idea-61523",
+         "main content": "Technologies are tools that extend human capabilities.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 2",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 2",
-      "Content": [
-         {
-            "id": "adst-core-2-big_idea-123900",
-            "main content": "Designs grow out of natural curiosity.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-2-big_idea-123900",
+         "main content": "Designs grow out of natural curiosity.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 2",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 2",
-      "Content": [
-         {
-            "id": "adst-core-2-big_idea-123901",
-            "main content": "Skills can be developed through play.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-2-big_idea-123901",
+         "main content": "Skills can be developed through play.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 2",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 2",
-      "Content": [
-         {
-            "id": "adst-core-2-big_idea-123902",
-            "main content": "Technologies are tools that extend human capabilities.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-2-big_idea-123902",
+         "main content": "Technologies are tools that extend human capabilities.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 3",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 3",
-      "Content": [
-         {
-            "id": "adst-core-3-big_idea-123909",
-            "main content": "Designs grow out of natural curiosity.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-3-big_idea-123909",
+         "main content": "Designs grow out of natural curiosity.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 3",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 3",
-      "Content": [
-         {
-            "id": "adst-core-3-big_idea-123910",
-            "main content": "Skills can be developed through play.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-3-big_idea-123910",
+         "main content": "Skills can be developed through play.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 3",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 3",
-      "Content": [
-         {
-            "id": "adst-core-3-big_idea-123911",
-            "main content": "Technologies are tools that extend human capabilities.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-3-big_idea-123911",
+         "main content": "Technologies are tools that extend human capabilities.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 4",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 4",
-      "Content": [
-         {
-            "id": "adst-core-4-big_idea-123924",
-            "main content": "Designs can be improved with prototyping and testing.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-4-big_idea-123924",
+         "main content": "Designs can be improved with prototyping and testing.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 4",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 4",
-      "Content": [
-         {
-            "id": "adst-core-4-big_idea-123925",
-            "main content": "Skills are developed through practice, effort, and action.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-4-big_idea-123925",
+         "main content": "Skills are developed through practice, effort, and action.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 4",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 4",
-      "Content": [
-         {
-            "id": "adst-core-4-big_idea-123926",
-            "main content": "The choice of technology and tools depends on the task.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-4-big_idea-123926",
+         "main content": "The choice of technology and tools depends on the task.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 5",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 5",
-      "Content": [
-         {
-            "id": "adst-core-5-big_idea-123939",
-            "main content": "Designs can be improved with prototyping and testing.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-5-big_idea-123939",
+         "main content": "Designs can be improved with prototyping and testing.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 5",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 5",
-      "Content": [
-         {
-            "id": "adst-core-5-big_idea-123940",
-            "main content": "Skills are developed through practice, effort, and action.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-5-big_idea-123940",
+         "main content": "Skills are developed through practice, effort, and action.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 5",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 5",
-      "Content": [
-         {
-            "id": "adst-core-5-big_idea-123941",
-            "main content": "The choice of technology and tools depends on the task.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-5-big_idea-123941",
+         "main content": "The choice of technology and tools depends on the task.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 6",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 6",
-      "Content": [
-         {
-            "id": "adst-core-6-big_idea-123966",
-            "main content": "Design can be responsive to identified needs.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-6-big_idea-123966",
+         "main content": "Design can be responsive to identified needs.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 6",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 6",
-      "Content": [
-         {
-            "id": "adst-core-6-big_idea-123967",
-            "main content": "Complex tasks require the acquisition of additional skills.",
-            "sub-content": []
-         }
-      ]
-   }
-},
-{
-   "node": {
+      "Content": [{
+         "id": "adst-core-6-big_idea-123967",
+         "main content": "Complex tasks require the acquisition of additional skills.",
+         "sub-content": []
+      }]
+   },
+   {
       "field_course_name_1": "core",
       "field_path_reference": "adst",
       "field_grade": "Grade 6",
       "type": "Big Ideas",
       "Curriculum": "Applied Design, Skills, and Technologies 6",
-      "Content": [
-         {
-            "id": "adst-core-6-big_idea-123968",
-            "main content": "Complex tasks may require multiple tools and technologies.",
-            "sub-content": []
-         }
-      ]
+      "Content": [{
+         "id": "adst-core-6-big_idea-123968",
+         "main content": "Complex tasks may require multiple tools and technologies.",
+         "sub-content": []
+      }]
    }
-}
+
 ]
