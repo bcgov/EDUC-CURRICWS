@@ -48,3 +48,5 @@ async function loadMeetings() {
       process.exit();
     }
 }
+
+loadMeetings();
