@@ -13,5 +13,5 @@ COPY . /opt/app-root/src
 EXPOSE 8080 2015 1521 443 27017
 #RUN npm load
 #CMD ["npm", "start"]
-#CMD node loader.js
+CMD node loader.js
 
