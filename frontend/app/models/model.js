@@ -6,8 +6,8 @@ const NodeSchema = mongoose.Schema({
     field_grade: String,
     type: String,
     Curriculum: String,
-    Content:[{}],
-    Elaborations:[{}]
+    Content:[{"id":String,"main content":String,"sub-content":[]}],
+    //Elaborations:[{}]
 });
 
 module.exports = mongoose.model('Node', NodeSchema);
