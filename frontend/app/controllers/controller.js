@@ -40,7 +40,27 @@ exports.findAll = (req, res) => {
         });
     });
 };
-
+// Find a single note with a noteId
+exports.findOne = (req, res) => {
+    Node.findById(req.params.nodeId)
+    .then(node => {
+        if(!node) {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.nodeId
+            });            
+        }
+        res.send(node);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.nodeId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving note with id " + req.params.nodeId
+        });
+    });
+};
 exports.findSubjects = (req, res) => {
     var nodeReturn = Node.find();
     console.log(nodeReturn);
