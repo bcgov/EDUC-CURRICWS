@@ -8,4 +8,6 @@ module.exports = (app) => {
      app.post('/nodes',curri.create);
      //Delete a Curriculum object
      app.delete('/nodes/:nodeId', curri.delete);
+     //Delete a Curriculum object
+     app.delete('/nodes', curri.deleteMany);
 };

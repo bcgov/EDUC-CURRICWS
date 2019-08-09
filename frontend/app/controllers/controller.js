@@ -44,10 +44,6 @@ exports.findAll = (req, res) => {
 exports.findSubjects = (req, res) => {
     var nodeReturn = Node.find();
     console.log(nodeReturn);
-    //.then(nodes => {
-    //    res.send(nodes);
-
-
 };
 
 // Delete a note with the specified noteId in the request
@@ -70,4 +66,12 @@ exports.delete = (req, res) => {
             message: "Node not delete note with id " + req.params.nodeId
         });
     });
+};
+
+exports.deleteMany = (req, res) => {
+    try {
+        Node.deleteMany( { "__v" : 0 } );
+     } catch (e) {
+        console.log(e);
+     }
 };
