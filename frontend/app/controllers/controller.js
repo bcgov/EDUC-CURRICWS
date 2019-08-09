@@ -68,10 +68,19 @@ exports.delete = (req, res) => {
     });
 };
 
-exports.deleteMany = (req, res) => {
-    try {
-        Node.deleteMany( { "__v" : 0 } );
-     } catch (e) {
-        console.log(e);
-     }
+exports.deleteMany = () => {
+        Node.deleteMany( { "__v" : 0 }, function(err) {} );
+        /*.then(
+            res.send({message: "Nodes deleted successfully!"});
+        ).catch(err => {
+            if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+                return res.status(404).send({
+                    message: "Nodes not deleted"
+                });                
+            }
+            return res.status(500).send({
+                message: "Nodes not deleted"
+            });
+        });*/
+
 };
