@@ -120,6 +120,7 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
         }
         var splitNode = JSON.parse(node);
         var nodeToSend = JSON.stringify(splitNode.field_path_reference, splitNode.field_grade, splitNode.Content);
+        console.log(nodeToSend);
         res.send(nodeToSend);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
