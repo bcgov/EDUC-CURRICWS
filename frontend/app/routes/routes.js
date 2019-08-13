@@ -5,6 +5,7 @@ module.exports = (app) => {
     //Retrieve all Subjects
     app.get('/nodes/:gradeId', curri.findByGrade);
     app.get('/nodes/:subjectId/:gradeId', curri.findBySubjectAndGrade);
+    app.get('/grade/:subjectId/:gradeId', curri.findBySubjectAndGradeTidy);
     app.get('/node/:nodeId', curri.findOne);
     //Create a Curriculum object
     app.post('/nodes',curri.create);
