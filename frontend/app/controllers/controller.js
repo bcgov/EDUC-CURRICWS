@@ -118,10 +118,12 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
-        //var splitNode = JSON.parse(node);
-        //var nodeToSend = JSON.stringify(splitNode.field_path_reference, splitNode.field_grade, splitNode.Content);
-        //console.log(nodeToSend);
-        res.send(node);
+        var splitNode = JSON.parse(node);
+        var nodeToSend = JSON.stringify(splitNode.field_path_reference, splitNode.field_grade, splitNode.Content);
+        console.log(nodeToSend);
+        return nodeToSend;
+    });/*
+        
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
@@ -131,7 +133,9 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
         return res.status(500).send({
             message: "Error retrieving note with id " + req.params.nodeId
         });
-    });
+        
+    });*/
+    res.send(nodeToSend);
 };
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
