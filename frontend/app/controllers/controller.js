@@ -53,6 +53,7 @@ exports.findOne = (req, res) => {
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
+        console.log(node);
         res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {

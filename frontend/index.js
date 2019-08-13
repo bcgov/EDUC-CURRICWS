@@ -5,7 +5,7 @@ var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
 // create express app
 const app = express();
-app.use(logger('dev'));
+//app.use(logger('dev'));
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
