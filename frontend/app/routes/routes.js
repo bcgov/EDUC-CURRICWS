@@ -3,9 +3,9 @@ module.exports = (app) => {
     // Retrieve all Notes
     app.get('/all', curri.findAll);
     //Retrieve all Subjects
-    app.get('/grade/:gradeId', curri.findByGrade);
-    app.get('/grade/:subjectId/:gradeId', curri.findBySubjectAndGrade);
-    app.get('/nodes/:nodeId', curri.findOne);
+    app.get('/nodes/:gradeId', curri.findByGrade);
+    app.get('/nodes/:subjectId/:gradeId', curri.findBySubjectAndGrade);
+    app.get('/node/:nodeId', curri.findOne);
     //Create a Curriculum object
     app.post('/nodes',curri.create);
     //Delete a Curriculum object
