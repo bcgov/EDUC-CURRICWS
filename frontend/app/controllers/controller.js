@@ -67,9 +67,31 @@ exports.findOne = (req, res) => {
     });
 };
 
-//Gets nodes with 
+//Gets nodes with specific Grades 
 exports.findByGrade = (req, res) => {
     Node.find({'field_grade':req.params.gradeId})
+    .then(node => {
+        if(!node) {
+            return res.status(404).send({
+                message: "Node not found with id " + req.params.nodeId
+            });            
+        }
+        res.send(node);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Node not found with id " + req.params.nodeId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving note with id " + req.params.nodeId
+        });
+    });
+
+};
+//Gets nodes with specific Subjects and Grades 
+exports.findBySubjectAndGrade = (req, res) => {
+    Node.find({'field_path_reference':req.params.subjectId,'field_grade':req.params.gradeId})
     .then(node => {
         if(!node) {
             return res.status(404).send({
