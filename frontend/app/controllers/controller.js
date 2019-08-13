@@ -111,6 +111,7 @@ exports.findBySubjectAndGrade = (req, res) => {
 };
 //Gets nodes with specific Subjects and Grades 
 exports.findBySubjectAndGradeTidy = (req, res) => {
+    var nodeToSend;
     Node.find({'field_path_reference':req.params.subjectId,'field_grade':req.params.gradeId})
     .then(node => {
         if(!node) {
@@ -119,7 +120,7 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
             });            
         }
         var splitNode = JSON.parse(node);
-        var nodeToSend = JSON.stringify(splitNode.field_path_reference, splitNode.field_grade, splitNode.Content);
+        nodeToSend = JSON.stringify(splitNode.field_path_reference, splitNode.field_grade, splitNode.Content);
         console.log(nodeToSend);
         return nodeToSend;
     });/*
