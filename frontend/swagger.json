@@ -40,12 +40,7 @@
                                     "Curriculum": {
                                         "type": "string"
                                     },
-                                    "Content":{
-                                        "type": "[{}]"
-                                    },
-                                    "Elaborations":{
-                                        "type": "[{}]"
-                                    }
+                                    "Content":[{"id":"string","main content":"string","sub-content":[]}]
                                 }
                             }
                         }
