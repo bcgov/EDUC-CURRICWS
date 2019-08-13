@@ -50,35 +50,36 @@ exports.findOne = (req, res) => {
     .then(node => {
         if(!node) {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.nodeId
+                message: "Node not found with id " + req.params.nodeId
             });            
         }
         res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.nodeId
+                message: "Node not found with id " + req.params.nodeId
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.nodeId
+            message: "Error retrieving node with id " + req.params.nodeId
         });
     });
 };
+
 //Gets nodes with 
 exports.findByGrade = (req, res) => {
     Node.find({'field_grade':req.params.gradeId})
     .then(node => {
         if(!node) {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.nodeId
+                message: "Node not found with id " + req.params.nodeId
             });            
         }
         res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.nodeId
+                message: "Node not found with id " + req.params.nodeId
             });                
         }
         return res.status(500).send({
@@ -87,7 +88,6 @@ exports.findByGrade = (req, res) => {
     });
 
 };
-
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
     Node.findByIdAndRemove(req.params.nodeId)
