@@ -9,8 +9,8 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a node
-    const node = new Node({
+// Create a node
+const node = new Node({
         field_course_name_1: req.body.field_course_name_1,
         field_path_reference:req.body.field_path_reference,
         field_grade: String,
@@ -30,6 +30,8 @@ exports.create = (req, res) => {
         });
     });
 };
+
+// Get all nodes
 exports.findAll = (req, res) => {
     Node.find()
     .then(nodes => {
@@ -40,6 +42,8 @@ exports.findAll = (req, res) => {
         });
     });
 };
+
+
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
     Node.findById(req.params.nodeId)
@@ -61,9 +65,27 @@ exports.findOne = (req, res) => {
         });
     });
 };
-exports.findSubjects = (req, res) => {
-    var nodeReturn = Node.find();
-    console.log(nodeReturn);
+//Gets nodes with 
+exports.findByGrade = (req, res) => {
+    Node.find({'field_grade':req.params.gradeId})
+    .then(node => {
+        if(!node) {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.nodeId
+            });            
+        }
+        res.send(node);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.nodeId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving note with id " + req.params.nodeId
+        });
+    });
+
 };
 
 // Delete a note with the specified noteId in the request
