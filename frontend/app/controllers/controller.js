@@ -111,7 +111,6 @@ exports.findBySubjectAndGrade = (req, res) => {
 };
 //Gets nodes with specific Subjects and Grades 
 exports.findBySubjectAndGradeTidy = (req, res) => {
-    var nodeToSend;
     Node.find({'field_path_reference':req.params.subjectId,'field_grade':req.params.gradeId})
     .then(node => {
         if(!node) {
@@ -120,11 +119,8 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
             });            
         }
         var splitNode = JSON.parse(node);
-        nodeToSend = JSON.stringify(splitNode.field_path_reference, splitNode.field_grade, splitNode.Content);
-        console.log(nodeToSend);
-        return nodeToSend;
-    });/*
-        
+        node = JSON.stringify(splitNode.field_path_reference, splitNode.field_grade, splitNode.Content);
+        res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
@@ -133,11 +129,10 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
         }
         return res.status(500).send({
             message: "Error retrieving note with id " + req.params.nodeId
-        });
-        
-    });*/
-    res.send(nodeToSend);
+        });      
+    });    
 };
+
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
     Node.findByIdAndRemove(req.params.nodeId)
