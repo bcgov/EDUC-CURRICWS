@@ -118,10 +118,10 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
-        var node1 = node.toJSON();
-        var node2 = JSON.parse(node1);
-        var node3 = JSON.stringify(node2.field_path_reference, node2.field_grade, node2.Content);
-        res.send(node3);
+        var node1 = node.toObject();
+        //var node2 = JSON.parse(node1);
+        //var node3 = JSON.stringify(node2.field_path_reference, node2.field_grade, node2.Content);
+        res.send(node1);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
