@@ -106,7 +106,7 @@ exports.findBySubjectAndGrade = (req, res) => {
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.nodeId
+            message: err.body
         });
     });
 };
