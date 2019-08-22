@@ -97,8 +97,7 @@ exports.findBySubjectAndGrade = (req, res) => {
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
-        var node1 = node.toObject();
-        res.send(node1);
+        res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
