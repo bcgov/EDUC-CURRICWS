@@ -86,7 +86,7 @@ exports.findByGrade = (req, res) => {
         return res.status(500).send({
             message: "Error retrieving note with id " + req.params.nodeId
         });
-    });
+    }); 
 };
 //Gets nodes with specific Subjects and Grades 
 exports.findBySubjectAndGrade = (req, res) => {
@@ -109,19 +109,16 @@ exports.findBySubjectAndGrade = (req, res) => {
         });
     });
 };
-//Gets nodes with specific Subjects and Grades 
-exports.findBySubjectAndGradeTidy = (req, res) => {
-    Node.find({'field_path_reference':req.params.subjectId,'field_grade':req.params.gradeId})
+//Gets nodes with specific Subjects and Grades and Type
+exports.findBySubjectAndGradeAndType = (req, res) => {
+    Node.find({'field_path_reference':req.params.subjectId,'field_grade':req.params.gradeId,'type':req.params.typeId})
     .then(node => {
         if(!node) {
             return res.status(404).send({
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
-        var node1 = node.toObject();
-        //var node2 = JSON.parse(node1);
-        //var node3 = JSON.stringify(node2.field_path_reference, node2.field_grade, node2.Content);
-        res.send(node1);
+        res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
@@ -129,9 +126,9 @@ exports.findBySubjectAndGradeTidy = (req, res) => {
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.nodeId
-        });      
-    });    
+            message: err.body
+        });
+    });
 };
 
 // Delete a note with the specified noteId in the request
