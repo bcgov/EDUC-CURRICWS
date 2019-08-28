@@ -56,31 +56,6 @@
             "get": {
                 "description": "Returns a nodes based on a single Grade Level",
                 "operationId": "findByGrade",
-                "parameters": [{
-                    "_id": {
-                        "type": "string"
-                    },
-                    "field_course_name_1": {
-                        "type": "string"
-                    },
-                    "field_path_reference": {
-                        "type": "string"
-                    },
-                    "field_grade": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "Curriculum": {
-                        "type": "string"
-                    },
-                    "Content": [{
-                        "id": "string",
-                        "main content": "string",
-                        "sub-content": []
-                    }]
-                }],
                 "responses": {
                     "200": {
                         "description": "A list of Nodes",
