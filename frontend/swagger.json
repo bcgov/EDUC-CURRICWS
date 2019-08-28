@@ -56,6 +56,21 @@
             "get": {
                 "description": "Returns a nodes based on a single Grade Level",
                 "operationId": "findByGrade",
+                "parameters":  [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "ID of Grade",
+                      "required": true,
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "style": "simple"
+                    }
+                  ],
                 "responses": {
                     "200": {
                         "description": "A list of Nodes",
