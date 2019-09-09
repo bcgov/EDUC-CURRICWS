@@ -62,13 +62,8 @@
                       "in": "path",
                       "description": "ID of Grade",
                       "required": true,
-                      "schema": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "style": "simple"
+                      "type": "integer",
+                      "format": "int64"
                     }
                   ],
                 "responses": {
