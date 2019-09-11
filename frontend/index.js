@@ -5,7 +5,7 @@ var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
 //JWT    
 var AuthController = require('./app/auth/AuthController');
-var UserController = require('./app/controllers/controller');
+var UserController = require('./app/controllers/UserController');
 // create express app
 const app = express();
 //app.use(logger('dev'));
