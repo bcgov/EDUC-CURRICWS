@@ -58,7 +58,7 @@
                 "operationId": "findByGrade",
                 "parameters":  [
                     {
-                      "name": "id",
+                      "name": "Grade level",
                       "in": "path",
                       "description": "ID of Grade",
                       "required": true,
