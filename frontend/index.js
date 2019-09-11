@@ -10,9 +10,7 @@ var UserController = require('./app/controllers/UserController');
 const app = express();
 //app.use(logger('dev'));
 
-//JWT
-app.use('./users', UserController);
-app.use('/api/auth', AuthController);
+
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -73,7 +71,9 @@ app.get('/', (req, res) => {
     res.json({"message": "Welcome to the B.C Curriculum web api"});
 });
 app.use('/api-documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+//JWT
+app.use('/users', UserController);
+app.use('/api/auth', AuthController);
 //app.use('/api/v1', router);
 require('./app/routes/routes.js')(app);
 
