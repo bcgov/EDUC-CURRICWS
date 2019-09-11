@@ -3,9 +3,16 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
+//JWT    
+var AuthController = require('./app/auth/AuthController');
+var UserController = require('./app/controllers/controller');
 // create express app
 const app = express();
 //app.use(logger('dev'));
+
+//JWT
+app.use('./users', UserController);
+app.use('/api/auth', AuthController);
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
