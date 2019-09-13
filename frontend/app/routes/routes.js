@@ -1,7 +1,8 @@
+var VerifyToken = require('../auth/VerifyToken');
 module.exports = (app) => {
     const curri = require('../controllers/controller.js');
     // Retrieve all Notes
-    app.get('/all', curri.findAll);
+    app.get('/all', VerifyToken, curri.findAll);
     //Retrieve all Subjects
     app.get('/nodes/:gradeId', curri.findByGrade);
     app.get('/nodes/:subjectId/:gradeId', curri.findBySubjectAndGrade);
