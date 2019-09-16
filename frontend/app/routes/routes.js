@@ -4,10 +4,10 @@ module.exports = (app) => {
     // Retrieve all Notes
     app.get('/all', VerifyToken, curri.findAll);
     //Retrieve all Subjects
-    app.get('/nodes/:gradeId', curri.findByGrade);
-    app.get('/nodes/:subjectId/:gradeId', curri.findBySubjectAndGrade);
-    app.get('/nodes/:subjectId/:gradeId/:typeId', curri.findBySubjectAndGradeAndType);
-    app.get('/node/:nodeId', curri.findOne);
+    app.get('/nodes/:gradeId', VerifyToken, curri.findByGrade);
+    app.get('/nodes/:subjectId/:gradeId', VerifyToken, curri.findBySubjectAndGrade);
+    app.get('/nodes/:subjectId/:gradeId/:typeId', VerifyToken, curri.findBySubjectAndGradeAndType);
+    app.get('/node/:nodeId', VerifyToken, curri.findOne);
     //Create a Curriculum object
     app.post('/nodes',curri.create);
     //Delete a Curriculum object
