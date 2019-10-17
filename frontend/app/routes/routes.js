@@ -3,7 +3,7 @@ module.exports = (app) => {
     const curri = require('../controllers/controller.js');
     // Retrieve all Notes
     app.get('/all', VerifyToken, curri.findAll);
-    //Retrieve all Subjects
+    //Retrieve all Subjegetcts
     app.get('/nodes/:gradeId', VerifyToken, curri.findByGrade);
     app.get('/nodes/:subjectId/:gradeId', VerifyToken, curri.findBySubjectAndGrade);
     app.get('/nodes/:subjectId/:gradeId/:typeId', VerifyToken, curri.findBySubjectAndGradeAndType);

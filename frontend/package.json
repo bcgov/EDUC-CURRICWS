@@ -4,7 +4,9 @@
   "description": "Webservice for Curriculum\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[B\u001b[ Se\u001b[2~rvice for Curriculum",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+
+    "start": "set ENVIRONMENT=remove&&node index.js",
+    "start:local": "set ENVIRONMENT=local&&node index.js",
     "load": "node loader.js"
   },
   "repository": {
@@ -34,7 +36,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.6",
     "morgan": "^1.9.1",
-    "swagger-ui-express": "^4.0.7"
+    "swagger-ui-express": "^4.0.7",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "mocha": "^6.1.4",
