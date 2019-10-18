@@ -35,6 +35,14 @@ const node = new Node({
 exports.findAll = (req, res) => {
     Node.find()
     .then(nodes => {
+       
+        
+        //console.log("|"  + nodes.field_course_name_1 + "|");
+        nodes.forEach(function(element) {
+            element.Content.forEach(function(subelement) {
+                console.log(subelement.maincontent);
+            });
+          });
         res.send(nodes);
     }).catch(err => {
         res.status(500).send({
@@ -53,7 +61,7 @@ exports.findOne = (req, res) => {
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
-        console.log(node);
+        
         res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
@@ -97,6 +105,7 @@ exports.findBySubjectAndGrade = (req, res) => {
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
+       
         res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
@@ -168,4 +177,13 @@ exports.deleteMany = () => {
             });
         });*/
 
+};
+const groupByType= (array, key) => {
+  return array.reduce((result, currentValue) => {
+    (result[currentValue.type] = result[currentValue.type] || []).push(
+      currentValue
+    );
+    console.log(result);
+    return result;
+  }, {});
 };

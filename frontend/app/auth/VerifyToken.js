@@ -2,7 +2,14 @@ var jwt = require('jsonwebtoken');
 var config = require('../config');
 
 function verifyToken(req, res, next) {
+  //check for token in the request header
   var token = req.headers['x-access-token'];
+  
+  //If the token is not in the req header, then it may be supplied throught the url
+  if(!token){ 
+    token = req.query.token;
+  }
+  
   if (!token)
     return res.status(403).send({ auth: false, message: 'No token provided.' });
     
