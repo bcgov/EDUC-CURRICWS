@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
 
-    "start": "set ENVIRONMENT=remove&&node index.js",
+    "start": "set ENVIRONMENT=remote&&node index.js",
     "start:local": "set ENVIRONMENT=local&&node index.js",
-    "start:load": "node loader.js"
+    "start:load": "set ENVIRONMENT=local&&node loader.js"
   },
   "repository": {
     "type": "git",
