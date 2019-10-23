@@ -5,7 +5,7 @@ function verifyToken(req, res, next) {
   //check for token in the request header
   var token = req.headers['x-access-token'];
   
-  //If the token is not in the req header, then it may be supplied throught the url
+  //If the token is not in the req header, then it may be supplied through the url
   if(!token){ 
     token = req.query.token;
   }

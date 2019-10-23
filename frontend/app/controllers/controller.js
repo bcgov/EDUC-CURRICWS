@@ -11,9 +11,9 @@ exports.create = (req, res) => {
 
 // Create a node
 const node = new Node({
-        field_course_name_1: req.body.field_course_name_1,
-        field_path_reference:req.body.field_path_reference,
-        field_grade: String,
+        course_path: req.body.course_path,
+        subject_path:req.body.subject_path,
+        grade_id: String,
         type: String,
         Curriculum: String,
         Content:[{}],
@@ -35,14 +35,21 @@ const node = new Node({
 exports.findAll = (req, res) => {
     Node.find()
     .then(nodes => {
-       
         
-        //console.log("|"  + nodes.field_course_name_1 + "|");
-        nodes.forEach(function(element) {
-            element.Content.forEach(function(subelement) {
-                console.log(subelement.maincontent);
-            });
-          });
+        //console.log( typeof nodes);
+        //console.log(typeof nodes[1]);
+        //console.log(nodes[0].'7'.subject_path);
+        //console.log(nodes[0]);
+        //console.log(nodes[0]._id);
+        //console.log(nodes[0].test);
+        
+
+        
+
+
+        
+    
+      
         res.send(nodes);
     }).catch(err => {
         res.status(500).send({
@@ -56,6 +63,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     Node.findById(req.params.nodeId)
     .then(node => {
+        
         if(!node) {
             return res.status(404).send({
                 message: "Node not found with id " + req.params.nodeId
@@ -77,7 +85,7 @@ exports.findOne = (req, res) => {
 
 //Gets nodes with specific Grades 
 exports.findByGrade = (req, res) => {
-    Node.find({'field_grade':req.params.gradeId})
+    Node.find({'grade_id':req.params.gradeId})
     .then(node => {
         if(!node) {
             return res.status(404).send({
@@ -98,19 +106,19 @@ exports.findByGrade = (req, res) => {
 };
 //Gets nodes with specific Subjects and Grades 
 exports.findBySubjectAndGrade = (req, res) => {
-    Node.find({'field_path_reference':req.params.subjectId,'field_grade':req.params.gradeId})
+    console.log(req.params.subjectId + " " + req.params.gradeId);
+    Node.Items.find({'Items.node.subject_path':req.params.subjectId,'Items.node.grade_id':req.params.gradeId})
     .then(node => {
         if(!node) {
             return res.status(404).send({
-                message: "Node not found with id " + req.params.nodeId
+                message: "Nodes not found for " + req.params.subjectId + "and" + req.params.gradeId
             });            
         }
-       
         res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Node not found with id " + req.params.nodeId
+                message: "Nodes not found for " + req.params.subjectId + "and" + req.params.gradeId
             });                
         }
         return res.status(500).send({
@@ -120,7 +128,7 @@ exports.findBySubjectAndGrade = (req, res) => {
 };
 //Gets nodes with specific Subjects and Grades and Type
 exports.findBySubjectAndGradeAndType = (req, res) => {
-    Node.find({'field_path_reference':req.params.subjectId,'field_grade':req.params.gradeId,'type':req.params.typeId})
+    Node.find({'subject_path':req.params.subjectId,'grade_id':req.params.gradeId,'type':req.params.typeId})
     .then(node => {
         if(!node) {
             return res.status(404).send({
