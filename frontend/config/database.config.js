@@ -3,10 +3,10 @@ var fs = require('fs');
 
 
 /* Local Database Settings - Requires openshift port forwarding*/
-/* oc port-forward curriculum-2-fvrzk 8888:27017 */
+/* oc port-forward podname 8888:27017 */
 
 /*curriculum-2-fvrzk is the pod name in Open shift */
-const ENVIRONMENT = process.env.ENVIRONMENT || "prod"; 
+const ENVIRONMENT = process.env.ENVIRONMENT || "remote"; 
 if(ENVIRONMENT == "local"){
     var username = fs.readFileSync('../../opt/etc/secrets/username', 'utf8').trim();
     var password = fs.readFileSync('../../opt/etc/secrets/password', 'utf8').trim();

@@ -5,24 +5,30 @@ var NodeSchema = new mongoose.Schema({
     
     subject_path: String,
     course_path: String,
-    course_discipline: [{ "en": String}],
+    course_discipline: { "en": String, "fr": String},
     grade_id: String,
     type: String,
-    curriculum_title: [{"en": String}],
-    content: [{
-        "content_id": String,
-        "en": {
+    curriculum_title: {"en": String, "fr":String},
+    content: {
+        "id": String,
+        "main_content": {
+            "en": String,
+            "fr": String
+        },
+        "sub_content": [{
             "id": String,
-            "main_content": String,
-            "sub_content": [{"content": String, "id":String}]
-        }
-    }],
-    curriculum_label: [{
-        "en": String
-    }],
-    curriculum_area_label: [{
-        "en": String
-    }],
+            "en": String,
+            "fr": String
+        }]
+    },    
+    curriculum_label: {
+        "en": String,
+        "fr": String
+    },
+    curriculum_area_label: {
+        "en": String,
+        "fr": String
+    },
     node_id: String
 });
 

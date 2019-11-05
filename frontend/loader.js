@@ -37,10 +37,13 @@ app.listen(8080, () => {
     console.log("Server is listening on port 8080");
 });
 
-const nodes = JSON.parse(fs.readFileSync('./data/curriculum_adst_all_grades.json', 'utf-8'));
+
 async function loadMeetings() {
     try {
+      var nodes = JSON.parse(fs.readFileSync('./data/curriculum_adst_all_grades.json', 'utf-8'));
       await Node.insertMany(nodes);
+      var nodes = JSON.parse(fs.readFileSync('./data/curriculum_science_all_grades.json', 'utf-8'));
+      await Node.insertMany(nodes);      
       console.log('Done!');
       process.exit();
     } catch(e) {
@@ -48,5 +51,6 @@ async function loadMeetings() {
       process.exit();
     }
 }
+
 
 loadMeetings();

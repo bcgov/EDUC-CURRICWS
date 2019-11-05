@@ -107,14 +107,29 @@ exports.findByGrade = (req, res) => {
 //Gets nodes with specific Subjects and Grades 
 exports.findBySubjectAndGrade = (req, res) => {
     console.log(req.params.subjectId + " " + req.params.gradeId);
-    Node.Items.find({'Items.node.subject_path':req.params.subjectId,'Items.node.grade_id':req.params.gradeId})
+    Node.find({'subject_path':req.params.subjectId,'grade_id':req.params.gradeId})
     .then(node => {
         if(!node) {
             return res.status(404).send({
                 message: "Nodes not found for " + req.params.subjectId + "and" + req.params.gradeId
             });            
         }
-        res.send(node);
+        //console.log(node[0].content[0].en.main_content);
+        var content = [];
+        var index = 0;
+        var count = 0;
+        
+        node.forEach(function(element){
+            
+            content.push({"main_content":element.content.main_content.en.trim()});
+        
+         
+        });
+
+        console.log(content);
+        
+        res.json(content);
+        //res.send(node);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
@@ -135,7 +150,23 @@ exports.findBySubjectAndGradeAndType = (req, res) => {
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
-        res.send(node);
+        var content = [];
+        var index = 0;
+        var count = 0;
+        console.log(req.params.typeId);
+       
+            node.forEach(function(element){ 
+                content.push(element.content.main_content.en.trim());
+            });
+
+        if(req.params.typeId == "Big Ideas"){
+            res.json({"big_ideas":content});
+        }else if(req.params.typeId == "Content"){
+            res.json({"content":content});
+        }else if(req.params.typeId == "Curricular Competency"){
+            res.json({"curricular_competencies":content});
+        }
+        
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
