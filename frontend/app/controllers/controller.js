@@ -1,4 +1,5 @@
 const Node = require('../models/model');
+var _ = require('lodash');
 
 // Create and Save a new Note
 exports.create = (req, res) => {
@@ -114,20 +115,8 @@ exports.findBySubjectAndGrade = (req, res) => {
                 message: "Nodes not found for " + req.params.subjectId + "and" + req.params.gradeId
             });            
         }
-        //console.log(node[0].content[0].en.main_content);
-        var content = [];
-        var index = 0;
-        var count = 0;
-        
-        node.forEach(function(element){
-            
-            content.push({"main_content":element.content.main_content.en.trim()});
-        
-         
-        });
+       var content = [];
 
-        console.log(content);
-        
         res.json(content);
         //res.send(node);
     }).catch(err => {
@@ -144,20 +133,67 @@ exports.findBySubjectAndGrade = (req, res) => {
 //Gets nodes with specific Subjects and Grades and Type
 exports.findBySubjectAndGradeAndType = (req, res) => {
     Node.find({'subject_path':req.params.subjectId,'grade_id':req.params.gradeId,'type':req.params.typeId})
-    .then(node => {
-        if(!node) {
+    .then(nodes => {
+        if(!nodes) {
             return res.status(404).send({
                 message: "Node not found with id " + req.params.nodeId
             });            
         }
-        var content = [];
         var index = 0;
-        var count = 0;
-        console.log(req.params.typeId);
+        var main_content = new Array();
        
-            node.forEach(function(element){ 
-                content.push(element.content.main_content.en.trim());
-            });
+        var content = new Array();
+        var x = [];
+        nodes.forEach(function(element){
+    
+            //console.log(element.content.main_content.en);
+
+            //result.push(element.content.main_content.en);  
+            //result.push(element.content.sub_content);
+            //result.push(element.content.sub_content);  
+            //console.log(element.content.sub_content);
+            try{
+                var sub_content = new Array();
+                main_content = element.content.main_content.en;
+                if(element.content.sub_content != null){
+                    subContentClone = _.cloneDeep(element.content.sub_content);
+        
+                    subContentClone.map(function(elem){
+                        try{
+                            sub_content.push(elem.en);  
+                                    
+                        }catch(e){
+
+                        } 
+                    });
+                    content.push({"main_content":main_content, "sub_content":sub_content});
+    
+                }else{
+                    content.push({"main_content":main_content});
+                }
+            }catch(e){
+                console.log("EXCEPTIONS" + e);
+            } 
+              
+
+              
+
+             //console.log(sub_content_array[0]);
+             //console.log(sub_content_array[1]);
+            
+            //result.push(element.content.main_content.en);
+            //result.push({"sub_content":element.content.sub_content[0].en});
+            //var x = element.content.sub_content[0].en;
+            //res.json("hello world");
+            
+            //remap the sub_content data
+
+            //
+        });
+        //console.log(result);
+        //console.log(nodes[0]);
+        //console.log(nodes[1]);
+        //console.log(nodes[2]);
 
         if(req.params.typeId == "Big Ideas"){
             res.json({"big_ideas":content});
