@@ -1,106 +1,283 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Curriculum Nodes Web API",
-        "description": "A simple API to get Nodes"
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "version": "1.0.0",
+    "title": "Curriculum Nodes Web API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
     },
-    "schemes": [
-        "https"
-    ],
-    "host": "curric-webservice-hswww8-dev.pathfinder.gov.bc.ca",
-    "basePath": "/",
-    "paths": {
-        "/all": {
-            "get": {
-                "summary": "Gets curriculum nodes",
-                "description": "Returns a list containing all nodes.",
-                "responses": {
-                    "200": {
-                        "description": "A list of Nodes",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "properties": {
-                                    "_id": {
-                                        "type": "string"
-                                    },
-                                    "field_course_name_1": {
-                                        "type": "string"
-                                    },
-                                    "field_path_reference": {
-                                        "type": "string"
-                                    },
-                                    "field_grade": {
-                                        "type": "string"
-                                    },
-                                    "type": {
-                                        "type": "string"
-                                    },
-                                    "Curriculum": {
-                                        "type": "string"
-                                    },
-                                    "Content": [{
-                                        "id": "string",
-                                        "main content": "string",
-                                        "sub-content": []
-                                    }]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/nodes/{gradeId}": {
-            "get": {
-                "description": "Returns a nodes based on a single Grade Level",
-                "operationId": "findByGrade",
-                "parameters":  [
-                    {
-                      "name": "Grade level",
-                      "in": "path",
-                      "description": "ID of Grade",
-                      "required": true,
-                      "type": "string"
-                    }
-                  ],
-                "responses": {
-                    "200": {
-                        "description": "A list of Nodes",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "properties": {
-                                    "_id": {
-                                        "type": "string"
-                                    },
-                                    "field_course_name_1": {
-                                        "type": "string"
-                                    },
-                                    "field_path_reference": {
-                                        "type": "string"
-                                    },
-                                    "field_grade": {
-                                        "type": "string"
-                                    },
-                                    "type": {
-                                        "type": "string"
-                                    },
-                                    "Curriculum": {
-                                        "type": "string"
-                                    },
-                                    "Content": [{
-                                        "id": "string",
-                                        "main content": "string",
-                                        "sub-content": []
-                                    }]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "node",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/all": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Gets all the nodes in the system",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        }
+      }
+    },
+    "/nodes/{gradeId}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Find Nodes by grade",
+        "description": "",
+        "operationId": "findByGrade",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "gradeId",
+            "in": "path",
+            "description": "e.g. K",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "400": {
+            "description": "Invalid gradeId supplied"
+          },
+          "404": {
+            "description": "Node not found"
+          }
+        }
+      }
+    },
+    "/nodes/{subjectId}/{gradeId}/{typeId}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Find Nodes by grade and type",
+        "description": "",
+        "operationId": "findBySubjectAndGradeAndType",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subjectId",
+            "in": "path",
+            "description": "e.g. adst",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gradeId",
+            "in": "path",
+            "description": "e.g. K",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "typeId",
+            "in": "path",
+            "description": "e.g. Big Ideas",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "400": {
+            "description": "Invalid gradeId or typeId supplied"
+          },
+          "404": {
+            "description": "Node not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Node": {
+      "type": "object",
+      "properties": {
+        "subject_path": {
+          "type": "string"
+        },
+        "course_path": {
+          "type": "string"
+        },
+        "course_discipline": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "grade_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "curriculum_title": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "Group": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "main_content": {
+              "type": "object",
+              "properties": {
+                "en": {
+                  "type": "string"
+                },
+                "fr": {
+                  "type": "string"
+                }
+              }
+            },
+            "sub_content": {
+              "type": "string"
+            }
+          }
+        },
+        "curriculum_label": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "curriculum_area_label": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Node"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
 }
