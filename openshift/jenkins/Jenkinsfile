@@ -32,7 +32,7 @@ pipeline {
     //PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
     
     //Load Data
-    LOAD_DATA = 0;
+    LOAD_DATA = "0";
   }
 
   stages {
@@ -64,7 +64,7 @@ pipeline {
         message "Do you want to Load Data?"
         ok "Loading Data"
         parameters {
-          name: string(name: 'LOAD_DATA', defaultValue :'0', description: 'load data flag 0 for no and 1 for yes')
+          name: string(name: 'LOAD_DATA', defaultValue :"0", description: 'load data flag 0 for no and 1 for yes')
         }
       }      
       steps {
