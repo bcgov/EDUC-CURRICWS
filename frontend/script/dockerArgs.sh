@@ -6,4 +6,4 @@
   #  echo "node loader.js"
 #else 
  #   echo "DO NOT LOAD"
-fi
+#fi
