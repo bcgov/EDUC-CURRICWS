@@ -204,7 +204,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
         "JOB_NAME=${JOB_NAME}",
         "NAMESPACE=${projectEnv}",
         "APP_NAME=${APP_NAME}",
-        "HOST_ROUTE=${hostRouteEnv}"
+        "HOST_ROUTE=${hostRouteEnv}",
         "LOAD_DATA=${LOAD_DATA}"
       )
 
