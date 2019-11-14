@@ -98,4 +98,6 @@ parameters:
   required: true
 - name: SOURCE_REPO_URL
   description: Git Repository URL
+- name: LOAD_DATA
+  description: load data param 1 to load 0 to not load
 required: true
