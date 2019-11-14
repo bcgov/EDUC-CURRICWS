@@ -205,6 +205,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
         "NAMESPACE=${projectEnv}",
         "APP_NAME=${APP_NAME}",
         "HOST_ROUTE=${hostRouteEnv}"
+        "LOAD_DATA=${LOAD_DATA}"
       )
 
       //createDeploymentStatus(projectEnv, 'PENDING', hostRouteEnv)
