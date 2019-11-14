@@ -1,3 +1,5 @@
+
+
 FROM node:lts-alpine
 
 # Move to App Folder
@@ -11,7 +13,13 @@ RUN npm i
 # Build Application
 COPY . /opt/app-root/src
 EXPOSE 8080 2015 1521 443 27017
+
+# Check if we need to load data
+ARG LOAD_DATA = 0
+COPY bash.sh /tmp/  
+RUN chmod u+x /script/dockerArgs && /scripts/dockerArgs $LOAD_DATA
+
 #RUN npm load
 CMD ["npm", "start"]
-#CMD node loader.js
+
 

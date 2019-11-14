@@ -82,6 +82,9 @@ objects:
           value: '2'
         - name: NPM_CONFIG_LOGLEVEL
           value: notice
+        buildArgs:
+        - name: "loadData"
+          value: ${LOAD_DATA}
       type: Docker
 parameters:
 - name: REPO_NAME

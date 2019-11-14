@@ -17,7 +17,7 @@ pipeline {
     REPO_NAME = 'educ-curricws'
 
     JOB_NAME = 'demo'
-
+    
     SOURCE_REPO_RAW = 'https://github.com/bcgov/${REPO_NAME}/master'
     SOURCE_REPO_REF = 'master'
     SOURCE_REPO_URL = 'https://github.com/bcgov/${REPO_NAME}.git'
@@ -30,6 +30,9 @@ pipeline {
     DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
     TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
     //PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
+    
+    //Load Data
+    LOAD_DATA = 0;
   }
 
   stages {
@@ -57,11 +60,20 @@ pipeline {
     
     stage('Build') {
       agent any
+      input{
+        message "Do you want to Load Data?"
+        ok "Loading Data"
+        parameters {
+          string(LOAD_DATA:'1')
+        }
+      }      
       steps {
+        echo "LOAD DATA: ${LOAD_DATA}"
         script {
+          
           openshift.withCluster() {
             openshift.withProject(TOOLS_PROJECT) {
-            
+              
               Frontend: {
                 try {
                   //notifyStageStatus('Frontend', 'PENDING')
