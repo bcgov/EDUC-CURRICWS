@@ -63,7 +63,7 @@ pipeline {
       input{
         message "Do you want to Load Data?"
         ok "Loading Data"
-        submitter "0, 1"
+        submitter "hello, world"
         parameters {
           name: string(name: 'LOAD_DATA', defaultValue :'0', description: 'load data flag 0 for no and 1 for yes')
         }
