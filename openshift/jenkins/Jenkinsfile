@@ -79,7 +79,7 @@ pipeline {
                   //notifyStageStatus('Frontend', 'PENDING')
 
                   //define buildConfig
-                  def bcFrontend = openshift.process('-f', 'openshift/curricws-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}", "LAOD_DATA=${LOAD_DATA})
+                  def bcFrontend = openshift.process('-f', 'openshift/curricws-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}", "LOAD_DATA=${LOAD_DATA}")
 
                   //build from template and tag
                   openshift.apply(bcFrontend).narrow('bc').startBuild('-w').logs('-f')
