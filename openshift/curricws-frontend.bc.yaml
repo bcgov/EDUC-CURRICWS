@@ -84,7 +84,7 @@ objects:
           value: notice
         buildArgs:
         - name: "LOAD_DATA"
-          value: "${LOAD_DATA}"
+          value: "1"
       type: Docker
 parameters:
 - name: REPO_NAME
