@@ -19,8 +19,7 @@ EXPOSE 8080 2015 1521 443 27017
 
 
 ARG LOAD_DATA=0
-RUN pwd
-RUN ls
+RUN chmod u+x ./script/dockerArgs.sh && sh /opt/app-root/src/script/dockerArgs.sh $LOAD_DATA
 #RUN npm load
 CMD ["npm", "start"]
 
