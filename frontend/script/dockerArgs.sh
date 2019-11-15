@@ -1,5 +1,5 @@
 #!/bin/bash -x
 if [ "$1" == 1 ]
 then
-    node ../loader.js
+	node ../loader.js
 fi
