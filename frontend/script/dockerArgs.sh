@@ -1,7 +1,8 @@
 #!/bin/bash -x
 if test -z $1 ; then 
-    echo "LOAD $1"
-    echo "node loader.js"
-else 
-  echo "DO NOT LOAD"
+    echo "DO NOT LOAD $1"
+    
+else
+  echo "node loader.js" 
+  echo "LOAD DATA $1"
 fi
