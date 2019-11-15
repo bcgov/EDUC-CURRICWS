@@ -3,9 +3,9 @@ if test -z "$1" ; then
     echo DO NOT LOAD "$1"
     
 else
-  echo "$1";
-  if [ "$1" == 1 ]
-  then
-    node ../loader.js
-  fi
+    echo "$1";
+    if [ "$1" == 1 ]
+    then
+        node ../loader.js
+    fi
 fi
