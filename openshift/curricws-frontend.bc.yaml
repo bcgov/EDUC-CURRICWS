@@ -83,12 +83,8 @@ objects:
         - name: NPM_CONFIG_LOGLEVEL
           value: notice
         buildArgs:
-        - name: USERNAME
-          value: "${USERNAME}"
-        - name: PASSWORD
-          value: "${PASSWORD}"  
-        - name: DATABASE
-          value: "${DATABASE}"          
+        - name: LOAD_DATA
+          value: "${LOAD_DATA}"
       type: Docker
 parameters:
 - name: REPO_NAME
@@ -102,10 +98,6 @@ parameters:
   required: true
 - name: SOURCE_REPO_URL
   description: Git Repository URL
-- name: USERNAME
-  description: username for mongodb
-- name: PASSWORD
-  description: password for mongodb
-- name: DATABASE
-  description: database for mongodb    
+- name: LOAD_DATA
+  description: load data param 1 to load 0 to not load
 required: true
