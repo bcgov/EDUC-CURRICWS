@@ -32,7 +32,9 @@ pipeline {
     //PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
     
     //Load Data
-    LOAD_DATA = "0";
+    USERNAME = "0";
+    PASSWORD = "0";
+    DATABASE = "0";
   }
 
   stages {
@@ -64,11 +66,15 @@ pipeline {
         message "Do you want to Load Data?"
         ok "Loading Data"
         parameters {
-          name: string(name: 'LOAD_DATA2', defaultValue :"0", description: 'load data flag 0 for no and 1 for yes')
+          name: string(name: 'USERNAME', defaultValue :"0", description: 'load data username')
+          name: string(name: 'PASSWORD', defaultValue :"0", description: 'load data password')
+          name: string(name: 'DATABASE', defaultValue :"0", description: 'load data database') 
         }
       }      
       steps {
-        echo "LOAD DATA: ${LOAD_DATA2}"
+        echo "USERNAME: ${USERNAME}"
+        echo "PASSWORD: ${PASSWORD}"
+        echo "DATABASE: ${DATABASE}"
         script {
           
           openshift.withCluster() {
@@ -79,7 +85,7 @@ pipeline {
                   //notifyStageStatus('Frontend', 'PENDING')
 
                   //define buildConfig
-                  def bcFrontend = openshift.process('-f', 'openshift/curricws-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}", "LOAD_DATA=${LOAD_DATA2}")
+                  def bcFrontend = openshift.process('-f', 'openshift/curricws-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}", "USERNAME=${USERNAME}",, "PASSWORD=${PASSWORD}", "DATABASE=${DATABASE}")
 
                   //build from template and tag
                   openshift.apply(bcFrontend).narrow('bc').startBuild('-w').logs('-f')

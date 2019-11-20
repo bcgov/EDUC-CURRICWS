@@ -12,15 +12,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Connect to Mongo V1
 // Configuring the database
+var connectionString = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD +'@172.50.188.50:27017/' + process.env.DATABASE;
 
-const dbConfig = require('./config/database.config');
+//const dbConfig = require('./config/database.config');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
 
-mongoose.connect(dbConfig.url, {
+mongoose.connect(connectionString, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");    

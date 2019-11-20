@@ -4,6 +4,6 @@ else
 	echo "$1"
 	if [ "$1" == 1 ];
 	then
-		node loader.js
+		USERNAME=$1 PASSWORD=$2 DATABASE=$3 node loader.js
 	fi
 fi
