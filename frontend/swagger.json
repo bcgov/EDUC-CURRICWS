@@ -1,16 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "description": "A simple RESTful web service to access BC Curriculum. This web service requires authorization via a token. To apply for a token contact <a href='mailto:EDUC.WebSupport@gov.bc.ca'>Ministry of Education Web Support</a>.",
     "version": "1.0.0",
-    "title": "Curriculum Nodes Web API",
-    "termsOfService": "http://swagger.io/terms/",
+    "title": "Curriculum Web API",
+    "termsOfService": "terms-of-service",
     "contact": {
-      "email": "apiteam@swagger.io"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "email": "EDUC.WebSupport@gov.bc.ca"
     }
   },
   "host": "localhost:8080",
@@ -18,10 +14,10 @@
   "tags": [
     {
       "name": "node",
-      "description": "Operations about user",
+      "description": "Learn more about Curriculum",
       "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
+        "description": "Learn more about Curriculum",
+        "url": "https://curriculum.gov.bc.ca"
       }
     }
   ],
@@ -62,6 +58,47 @@
         }
       }
     },
+    "/search/{keyword}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Find Nodes keyword",
+        "description": "",
+        "operationId": "find",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "path",
+            "description": "e.g. plants",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "400": {
+            "description": "Keyword not found"
+          },
+          "404": {
+            "description": "Keyword not found"
+          }
+        }
+      }
+    },    
     "/nodes/{gradeId}": {
       "get": {
         "security": [

@@ -8,6 +8,7 @@ module.exports = (app) => {
     app.get('/nodes/:subjectId/:gradeId', VerifyToken, curri.findBySubjectAndGrade);
     app.get('/nodes/:subjectId/:gradeId/:typeId', VerifyToken, curri.findBySubjectAndGradeAndType);
     app.get('/node/:nodeId', VerifyToken, curri.findOne);
+    app.get('/search/:keyword', VerifyToken, curri.find);
     //Create a Curriculum object
     app.post('/nodes',curri.create);
     //Delete a Curriculum object

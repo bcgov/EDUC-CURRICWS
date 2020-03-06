@@ -20,7 +20,7 @@ EXPOSE 8080 2015 1521 443 27017
 
 #ARG LOAD_DATA=0
 #CMD chmod u+x /opt/app-root/src/script/loader.sh && sh /opt/app-root/src/script/loader.sh $LOAD_DATA
-CMD ["npm", "start:load"]
+#CMD ["npm", "start:load"]
 CMD ["npm", "start"]
 
 

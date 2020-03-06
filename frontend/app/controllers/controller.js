@@ -105,6 +105,31 @@ exports.findByGrade = (req, res) => {
         });
     }); 
 };
+
+// Find nodes with text
+exports.find = (req, res) => {
+
+    Node.find({'content.main_content.en': { $regex: req.params.keyword, $options: 'i' } })
+    .then(node => {
+       
+        if(!node) {
+            return res.status(404).send({
+                message: "Node not found with id " + req.params.nodeId
+            });            
+        }
+        console.log("nodes" + node)
+        res.send(node);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Node not found with id " + req.params.nodeId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving node with id " + req.params.nodeId
+        });
+    });
+};
 //Gets nodes with specific Subjects and Grades 
 exports.findBySubjectAndGrade = (req, res) => {
     console.log(req.params.subjectId + " " + req.params.gradeId);

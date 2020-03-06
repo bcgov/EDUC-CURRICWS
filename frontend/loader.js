@@ -40,10 +40,24 @@ app.listen(8080, () => {
 
 async function loadMeetings() {
     try {
-      var nodes = JSON.parse(fs.readFileSync('./data/curriculum_adst_all_grades.json', 'utf-8'));
+      var nodes = JSON.parse(fs.readFileSync('./data/adst.json', 'utf-8'));
       await Node.insertMany(nodes);
-      var nodes = JSON.parse(fs.readFileSync('./data/curriculum_science_all_grades.json', 'utf-8'));
-      await Node.insertMany(nodes);      
+      var nodes = JSON.parse(fs.readFileSync('./data/science.json', 'utf-8'));
+      await Node.insertMany(nodes);
+      var nodes = JSON.parse(fs.readFileSync('./data/mathematics.json', 'utf-8'));
+      await Node.insertMany(nodes);  
+      var nodes = JSON.parse(fs.readFileSync('./data/arts-education.json', 'utf-8'));
+      await Node.insertMany(nodes);  
+      var nodes = JSON.parse(fs.readFileSync('./data/career-education.json', 'utf-8'));
+      await Node.insertMany(nodes);  
+      var nodes = JSON.parse(fs.readFileSync('./data/english-language-arts.json', 'utf-8'));
+      await Node.insertMany(nodes);  
+      var nodes = JSON.parse(fs.readFileSync('./data/francais-langue-premiere.json', 'utf-8'));
+      await Node.insertMany(nodes);  
+      var nodes = JSON.parse(fs.readFileSync('./data/languages.json', 'utf-8'));
+      await Node.insertMany(nodes);  
+      var nodes = JSON.parse(fs.readFileSync('./data/social-studies.json', 'utf-8'));
+      await Node.insertMany(nodes);        
       console.log('Done!');
       process.exit();
     } catch(e) {
