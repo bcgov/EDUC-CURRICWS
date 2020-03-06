@@ -17,7 +17,7 @@ if(ENVIRONMENT == "local"){
     /* Remote Database Settings*/
     var username = fs.readFileSync('/opt/etc/secrets/username', 'utf8').trim();
     var password = fs.readFileSync('/opt/etc/secrets/password', 'utf8').trim();
-    var host = 'https://curriculum-hswww8-dev.pathfinder.gov.bc.ca';//process.env.MONGODB_SERVICE_HOST || '172.50.188.50';
+    var host = '172.51.68.189';//process.env.MONGODB_SERVICE_HOST || '172.50.188.50';
     var port = '27017';//process.env.MONGODB_SERVICE_PORT || '27017';
     var database = fs.readFileSync('/opt/etc/secrets/database_name', 'utf8').trim();
 }
