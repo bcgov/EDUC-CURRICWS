@@ -9,7 +9,7 @@
       "email": "EDUC.WebSupport@gov.bc.ca"
     }
   },
-  "host": "localhost:8080",
+  "host": "curric-webservice-hswww8-dev.pathfinder.gov.bc.ca",
   "basePath": "/",
   "tags": [
     {

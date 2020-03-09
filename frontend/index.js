@@ -3,6 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
+    swaggerDocumentLocal = require('./swagger.local.json');
 //JWT    
 var AuthController = require('./app/auth/AuthController');
 var UserController = require('./app/controllers/UserController');
@@ -41,6 +42,9 @@ mongoose.connect(dbConfig.url, {
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to the B.C Curriculum web api"});
 });
+//defining a route for local api-documentation
+app.use('/local/api-documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocumentLocal));
+//Devine a Route for API Documentation production
 app.use('/api-documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //JWT
 app.use('/users', UserController);
