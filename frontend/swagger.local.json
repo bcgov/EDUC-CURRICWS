@@ -1,0 +1,320 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "A simple RESTful web service to access BC Curriculum. This web service requires authorization via a token. To apply for a token contact <a href='mailto:EDUC.WebSupport@gov.bc.ca'>Ministry of Education Web Support</a>.",
+    "version": "1.0.0",
+    "title": "Curriculum Web API",
+    "termsOfService": "terms-of-service",
+    "contact": {
+      "email": "EDUC.WebSupport@gov.bc.ca"
+    }
+  },
+  "host": "localhost",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "node",
+      "description": "Learn more about Curriculum",
+      "externalDocs": {
+        "description": "Learn more about Curriculum",
+        "url": "https://curriculum.gov.bc.ca"
+      }
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/all": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Gets all the nodes in the system",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        }
+      }
+    },
+    "/search/{keyword}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Find Nodes keyword",
+        "description": "",
+        "operationId": "find",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "path",
+            "description": "e.g. plants",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "400": {
+            "description": "Keyword not found"
+          },
+          "404": {
+            "description": "Keyword not found"
+          }
+        }
+      }
+    },    
+    "/nodes/{gradeId}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Find Nodes by grade",
+        "description": "",
+        "operationId": "findByGrade",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "gradeId",
+            "in": "path",
+            "description": "e.g. K",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "400": {
+            "description": "Invalid gradeId supplied"
+          },
+          "404": {
+            "description": "Node not found"
+          }
+        }
+      }
+    },
+    "/nodes/{subjectId}/{gradeId}/{typeId}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "node"
+        ],
+        "summary": "Find Nodes by grade and type",
+        "description": "",
+        "operationId": "findBySubjectAndGradeAndType",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subjectId",
+            "in": "path",
+            "description": "e.g. adst, science, arts-education, career-education, mathematics, physical-health-and-education, social-studies, english-language-arts",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gradeId",
+            "in": "path",
+            "description": "e.g. K, 1, 2, 3, 4, 5...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "typeId",
+            "in": "path",
+            "description": "e.g. Big Ideas, Content, or Curricular Competency",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "400": {
+            "description": "Invalid gradeId or typeId supplied"
+          },
+          "404": {
+            "description": "Node not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Node": {
+      "type": "object",
+      "properties": {
+        "subject_path": {
+          "type": "string"
+        },
+        "course_path": {
+          "type": "string"
+        },
+        "course_discipline": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "grade_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "curriculum_title": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "Group": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "main_content": {
+              "type": "object",
+              "properties": {
+                "en": {
+                  "type": "string"
+                },
+                "fr": {
+                  "type": "string"
+                }
+              }
+            },
+            "sub_content": {
+              "type": "string"
+            }
+          }
+        },
+        "curriculum_label": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "curriculum_area_label": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          }
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Node"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
