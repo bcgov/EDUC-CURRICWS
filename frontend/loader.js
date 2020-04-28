@@ -57,6 +57,10 @@ async function loadMeetings() {
       var nodes = JSON.parse(fs.readFileSync('./data/languages.json', 'utf-8'));
       await Node.insertMany(nodes);  
       var nodes = JSON.parse(fs.readFileSync('./data/social-studies.json', 'utf-8'));
+      await Node.insertMany(nodes);  
+      var nodes = JSON.parse(fs.readFileSync('./data/fral.json', 'utf-8'));
+      await Node.insertMany(nodes);   
+      var nodes = JSON.parse(fs.readFileSync('./data/social-studies.json', 'utf-8'));
       await Node.insertMany(nodes);        
       console.log('Done!');
       process.exit();
