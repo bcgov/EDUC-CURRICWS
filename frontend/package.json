@@ -38,7 +38,7 @@
     "morgan": "^1.9.1",
     "swagger-ui-express": "^4.0.7",
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
 
   },
   "devDependencies": {
